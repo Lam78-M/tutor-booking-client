@@ -5,10 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HiOutlineMenu, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
+import { Moon, Sun } from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { theme, setTheme} = useTheme()
 
   const menu = [
     { name: "Home", path: "/" },
@@ -18,13 +21,13 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-[#124170] text-white px-6 py-4 relative z-50">
-      <div className="flex items-center justify-between">
+    <nav className="bg-[#08223d]  px-6 py-4 p-2  ">
+      <div className="flex items-center justify-between container mx-auto ">
 
         {/* Logo */}
-        <h1 className="text-2xl font-bold text-[#AAFFC7]">
-          Medi<span className="text-[#67C090]">Queue</span>
-        </h1>
+      <h1 className="text-2xl font-bold text-[#53ef92]">
+  Medi<span className="text-[#33a25c]">Queue</span>
+</h1>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-6">
@@ -32,7 +35,7 @@ export default function Navbar() {
             <li key={item.path} className="relative">
               <Link
                 href={item.path}
-                className="px-2 py-1 transition-all duration-200"
+                className="px-2 py-1 transition-all duration-200 text-white font-semibold"
               >
                 {item.name}
               </Link>
@@ -41,15 +44,26 @@ export default function Navbar() {
               {pathname === item.path && (
                 <motion.div
                   layoutId="underline"
-                  className="h-[2px] bg-[#67C090] absolute left-0 right-0 -bottom-1"
+                  className="h-[2px] bg-[#52b37f] absolute left-0 right-0 -bottom-1"
                 />
               )}
             </li>
           ))}
         </ul>
 
+         <button
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 ml-55 lg:ml-0 transition-all"
+    >
+      {theme === "dark" ? (
+        <Sun className="text-yellow-400 " size={20} />
+      ) : (
+        <Moon className="text-blue-500" size={20} />
+      )}
+    </button>
+
         {/* Hamburger */}
-        <button className="md:hidden" onClick={() => setOpen(!open)}>
+        <button className="md:hidden text-white" onClick={() => setOpen(!open)}>
           {open ? <HiX size={26} /> : <HiOutlineMenu size={26} />}
         </button>
       </div>
