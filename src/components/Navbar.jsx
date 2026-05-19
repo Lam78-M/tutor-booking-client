@@ -18,10 +18,10 @@ export default function Navbar() {
 
   const menu = [
     { name: "Home", path: "/" },
-    { name: "Tutor", path: "/tutor" },
+    { name: "Tutors", path: "/tutor" },
     { name: "Add Tutor", path: "/add-tutor" },
     { name: "My Tutors", path: "/my-tutors" },
-    { name: "Sessions", path: "/sessions" },
+    { name: "My Booked Sessions", path: "/sessions" },
   ];
 
   return (
@@ -29,9 +29,9 @@ export default function Navbar() {
       <div className="px-10 flex items-center justify-between">
         
         {/* Logo */}
-        <h1 className="text-2xl font-bold text-[#53ef92]">
-          Medi<span className="text-[#33a25c]">Queue</span>
-        </h1>
+       <h1 className="text-2xl font-bold text-[#AAFFC7]">
+            Medi<span className="text-[#67C090]">Queue</span>
+          </h1>
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center justify-center w-full ml-20  gap-8">
@@ -87,6 +87,7 @@ export default function Navbar() {
             </Button>
 
             {/* Signup */}
+       <Link href={'/signup'}>
             <Button
               variant="bordered"
               className="
@@ -106,6 +107,7 @@ export default function Navbar() {
             >
               Sign Up
             </Button>
+       </Link>
 
             {/* Theme Toggle */}
             <button
