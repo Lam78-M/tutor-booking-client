@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^3.35.0",
+    "@contentstack/react-toastify": "^6.1.5",
     "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@heroui/react": "^3.0.5",
-    "framer-motion": "^12.38.0",
+    "framer-motion": "^12.39.0",
     "lucide-react": "^1.16.0",
     "next": "16.2.6",
     "next-themes": "^0.4.6",

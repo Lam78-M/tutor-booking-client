@@ -1,10 +1,15 @@
 "use client";
 
+import Link from "next/link";
+
+
+import { FcGoogle } from "react-icons/fc";
+
 export default function SignupPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-950 px-4">
 
-      <div className="w-full max-w-md bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-xl space-y-6">
+      <div className="w-full max-w-md bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-xl space-y-5">
 
         {/* Title */}
         <div className="text-center space-y-1">
@@ -12,8 +17,20 @@ export default function SignupPage() {
             Create Account
           </h1>
           <p className="text-sm text-gray-500">
-            Join us and start your journey
+            Sign up to get started
           </p>
+        </div>
+
+        {/* Name */}
+        <div className="space-y-1">
+          <label className="text-sm text-gray-600 dark:text-gray-300">
+            Name
+          </label>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent outline-none focus:border-[#67C090]"
+          />
         </div>
 
         {/* Email */}
@@ -24,6 +41,18 @@ export default function SignupPage() {
           <input
             type="email"
             placeholder="Enter your email"
+            className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent outline-none focus:border-[#67C090]"
+          />
+        </div>
+
+        {/* Photo URL */}
+        <div className="space-y-1">
+          <label className="text-sm text-gray-600 dark:text-gray-300">
+            Photo URL
+          </label>
+          <input
+            type="text"
+            placeholder="Paste your photo URL"
             className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent outline-none focus:border-[#67C090]"
           />
         </div>
@@ -40,28 +69,29 @@ export default function SignupPage() {
           />
         </div>
 
-        {/* Image Upload */}
-        <div className="space-y-1">
-          <label className="text-sm text-gray-600 dark:text-gray-300">
-            Profile Image
-          </label>
-
-          <div className="w-full p-4 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg text-center text-sm text-gray-500 cursor-pointer hover:border-[#67C090] transition">
-            Click to upload image
-          </div>
-        </div>
-
-        {/* Button */}
-        <button className="w-full py-3 rounded-lg font-medium text-[#0f3d2e] bg-gradient-to-r from-[#AAFFC7] to-[#67C090] hover:opacity-90 transition-all duration-300 shadow-md">
-          Sign Up
+        {/* Register Button */}
+        <button className="w-full py-3 rounded-lg font-medium  border border-green-600 text-[#0f3d2e] bg-[#a4e2a4] hover:opacity-90 transition-all duration-300 shadow-md">
+          Register
         </button>
 
-        {/* Footer */}
+        {/* Divider */}
+        <div className="flex items-center gap-3">
+          <div className="h-px bg-gray-300 dark:bg-gray-700 flex-1"></div>
+          <span className="text-xs text-gray-500">OR</span>
+          <div className="h-px bg-gray-300 dark:bg-gray-700 flex-1"></div>
+        </div>
+
+        {/* Google Button */}
+    <button className="w-full py-3 rounded-lg border border-green-600 dark:border-gray-700 flex items-center justify-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-800 transition">
+  <FcGoogle className="text-xl" />
+  Continue with Google
+</button>
+        {/* Login Link */}
         <p className="text-center text-sm text-gray-500">
           Already have an account?{" "}
-          <span className="text-[#67C090] font-medium cursor-pointer">
+          <Link href="/login" className="text-[#67C090] font-medium">
             Login
-          </span>
+          </Link>
         </p>
 
       </div>

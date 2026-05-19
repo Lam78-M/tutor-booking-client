@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { TextField,Label, Select,ListBox,Input, FieldError,Button, Card } from "@heroui/react";
+import toast from "react-hot-toast";
 
 
 const inputStyle = `
@@ -33,16 +34,16 @@ export default function AddTutor() {
 
  const data = await res.json()
      if(res.ok){
-      alert("your are successffull")
+      toast.success("your are successffull")
      }
   }
 
 
   return (
-<div className="min-w-3xl mx-auto shadow-xl mt-10 mb-10 border bg-white dark:bg-[#0f172a] transition-colors duration-300">
+<div className=" p-5 mx-auto shadow-xl mt-10 mb-10 border bg-white dark:bg-[#0f172a] transition-colors duration-300">
   <div className="text-center pt-10">
 
-  <span className="bg-[#AAFFC7] text-[#124170] px-4 py-1 rounded-full text-sm font-medium">
+  <span className="bg-[#AAFFC7] text-[#124170] px-4 py-2 rounded-full text-sm font-medium">
     Tutor Booking
   </span>
 
@@ -51,7 +52,7 @@ export default function AddTutor() {
   </h2>
 
   <p className="mt-4 text-[#475569] max-w-2xl mx-auto">
-    Fill in the details below to connect with experienced tutors and start learning smarter.
+    Fill in the details below to connect with experienced  <br></br> tutors and start learning smarter.
   </p>
 
 </div>
@@ -386,7 +387,7 @@ viewport={{ once: false, amount: 0.2 }}
       >
         <Button
           type="submit"
-       className=" w-full !rounded-none mt-8  bg-[#53ef92]  hover:bg-green-500 px-5 py-2 transition-all text-slate-700"
+       className=" w-full !rounded-none mt-8 border border-green-500  bg-[#53ef92]  hover:bg-green-500 px-5 py-2 transition-all text-slate-700"
         >
           Add Tutor
         </Button>

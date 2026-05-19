@@ -69,6 +69,7 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             
             {/* Login */}
+         <Link href={'/login'}>
             <Button
               className="
                 bg-[#48d07e]
@@ -85,6 +86,7 @@ export default function Navbar() {
             >
               Log In
             </Button>
+         </Link>
 
             {/* Signup */}
        <Link href={'/signup'}>
@@ -248,6 +250,7 @@ export default function Navbar() {
               {/* Bottom Buttons */}
               <div className="mt-auto flex flex-col gap-3 pt-6">
                 
+            <Link href={'/login'}>
                 <Button
                   className="
                     w-full
@@ -260,7 +263,10 @@ export default function Navbar() {
                 >
                   Log In
                 </Button>
+            </Link>
 
+              
+              <Link href={'/signup'}>
                 <Button
                   variant="bordered"
                   className="
@@ -274,6 +280,7 @@ export default function Navbar() {
                 >
                   Sign Up
                 </Button>
+              </Link>
               </div>
             </motion.div>
           </>

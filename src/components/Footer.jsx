@@ -1,7 +1,8 @@
 'use client'
 import Link from "next/link";
-import { FaFacebook, FaInstagram, FaLocationArrow, FaPhone, FaTwitter } from "react-icons/fa";
-import { SiGmail } from "react-icons/si";
+import { FaFacebook, FaInstagram,  FaMapMarkedAlt, FaPhone, FaPhoneAlt, FaTwitter } from "react-icons/fa";
+
+import { MdEmail } from "react-icons/md";
 
 export default function Footer() {
   return (
@@ -69,21 +70,21 @@ export default function Footer() {
 
           <div className="space-y-2 text-gray-300 text-sm">
             <p className="hover:text-[#67C090] transition-all duration-300 flex items-center gap-2 ">
-              <FaLocationArrow/> Khilkhet, Dhaka, Bangladesh
+              <FaMapMarkedAlt/> Khilkhet, Dhaka, Bangladesh
             </p>
 
             <a
               href="mailto:support@mediqueue.com"
               className=" hover:text-[#67C090] transition-all duration-300 flex items-center gap-2 "
             >
-              <SiGmail/> ayatlam@gmail.com
+              <MdEmail/> ayatlam@gmail.com
             </a>
 
             <a
               href="tel:+8801XXXXXXXXX"
               className=" hover:text-[#67C090] transition-all duration-300 flex items-center gap-2"
             >
-              <FaPhone/> +880 1602514628
+              <FaPhoneAlt/> +880 1602514628
             </a>
           </div>
 
