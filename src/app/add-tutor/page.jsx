@@ -15,12 +15,26 @@ const inputStyle = `
 `;
 export default function AddTutor() {
 
-  // submition linek
-  const onSubmit = (e)=>{
+  // submition link--------------
+  const onSubmit = async(e)=>{
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     const addtutor = Object.fromEntries(formData.entries())
     console.log(addtutor)
+
+  // calling api-------------
+  const res = await fetch('http://localhost:5000/tutor',{
+    method: "POST",
+    headers: {
+      'content-type' : 'application/json'
+    },
+    body: JSON.stringify(addtutor)
+  })
+
+ const data = await res.json()
+     if(res.ok){
+      alert("your are successffull")
+     }
   }
 
 
