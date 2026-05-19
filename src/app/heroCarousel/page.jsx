@@ -10,7 +10,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 export default function HeroSlider() {
   return (
-    <div className="w-full h-[800px]  overflow-hidden ">
+    <div className="w-full h-[900px]  overflow-hidden ">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation
@@ -47,8 +47,8 @@ export default function HeroSlider() {
                   Learn smarter with trusted tutors and interactive sessions.
                 </p>
 
-                <button className="mt-6 px-6 py-3 bg-[#67C090] hover:bg-[#54a87a] transition-all duration-300 rounded-full text-white font-semibold">
-                  Book a Session
+                <button className="mt-6 px-6 py-3 bg-[#67C090] hover:bg-[#54a87a] transition-all duration-300 rounded-lg text-white font-semibold">
+                 Get Tutor
                 </button>
               </div>
             </div>
@@ -75,8 +75,8 @@ export default function HeroSlider() {
                   Schedule classes anytime from anywhere with ease.
                 </p>
 
-                <button className="mt-6 px-6 py-3 bg-[#67C090] hover:bg-[#54a87a] transition-all duration-300 rounded-full text-white font-semibold">
-                  Start Learning
+                <button className="mt-6 px-6 py-3 bg-[#67C090] hover:bg-[#54a87a] transition-all duration-300 rounded-lg text-white font-semibold">
+               Get Tutor
                 </button>
               </div>
             </div>
@@ -103,8 +103,8 @@ export default function HeroSlider() {
                   Personalized learning paths for students and educators.
                 </p>
 
-                <button className="mt-6 px-6 py-3 bg-[#67C090] hover:bg-[#54a87a] transition-all duration-300 rounded-full text-white font-semibold">
-                  Explore Tutors
+                <button className="mt-6 px-6 py-3 bg-[#67C090] hover:bg-[#54a87a] transition-all duration-300 rounded-lg text-white font-semibold">
+                 Get Tutor
                 </button>
               </div>
             </div>
@@ -119,9 +119,7 @@ export default function HeroSlider() {
 
     {/* main card */}
     <div className="relative z-10 w-full px-6">
-
       <div className="max-w-4xl mx-auto rounded-2xl p-[2px] bg-white/20 shadow-2xl">
-
         {/* glossy inner layer */}
         <div className="rounded-2xl bg-white/10 backdrop-blur-xl border border-white/30 p-8 relative overflow-hidden">
 
@@ -146,7 +144,7 @@ export default function HeroSlider() {
             {/* Button */}
             <a
               href="#"
-              className="px-6 py-3 rounded-xl bg-white text-[#1f5f42] font-semibold shadow-lg hover:scale-105 active:scale-95 transition"
+              className="px-6 py-3 rounded-lg bg-white text-[#1f5f42] font-semibold shadow-lg hover:scale-105 active:scale-95 transition"
             >
               Shop Now
             </a>

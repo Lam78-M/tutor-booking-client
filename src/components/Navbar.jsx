@@ -7,104 +7,273 @@ import { HiOutlineMenu, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
+import { Button } from "@heroui/react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+
   const pathname = usePathname();
-  const { theme, setTheme} = useTheme()
+
+  const { theme, setTheme } = useTheme();
 
   const menu = [
     { name: "Home", path: "/" },
+    { name: "Tutor", path: "/tutor" },
     { name: "Add Tutor", path: "/add-tutor" },
     { name: "My Tutors", path: "/my-tutors" },
     { name: "Sessions", path: "/sessions" },
   ];
 
   return (
-    <nav className="bg-[#08223d]  px-6 py-4 p-2  ">
-      <div className="flex items-center justify-between container mx-auto ">
-
+    <nav className="bg-[#08223d] p-5 px-4 md:px-6  sticky top-0 z-50">
+      <div className="px-10 flex items-center justify-between">
+        
         {/* Logo */}
-      <h1 className="text-2xl font-bold text-[#53ef92]">
-  Medi<span className="text-[#33a25c]">Queue</span>
-</h1>
+        <h1 className="text-2xl font-bold text-[#53ef92]">
+          Medi<span className="text-[#33a25c]">Queue</span>
+        </h1>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-6">
-          {menu.map((item) => (
-            <li key={item.path} className="relative">
-              <Link
-                href={item.path}
-                className="px-2 py-1 transition-all duration-200 text-white font-semibold"
-              >
-                {item.name}
-              </Link>
+        <div className="hidden lg:flex items-center justify-center w-full ml-20  gap-8">
+          
+          {/* Nav Links */}
+          <ul className="flex items-center justify-center w-full gap-2">
+            {menu.map((item) => (
+              <li key={item.path} className="relative">
+                <Link
+                  href={item.path}
+                  className={`
+                    px-4 py-2 rounded-full font-medium transition-all duration-300
+                    ${
+                      pathname === item.path
+                        ? "text-[#53ef92] bg-white/10"
+                        : "text-gray-200 hover:text-[#53ef92] hover:bg-white/5"
+                    }
+                  `}
+                >
+                  {item.name}
+                </Link>
 
-              {/* Animated underline */}
-              {pathname === item.path && (
-                <motion.div
-                  layoutId="underline"
-                  className="h-[2px] bg-[#52b37f] absolute left-0 right-0 -bottom-1"
-                />
+                {/* Active Underline */}
+                {pathname === item.path && (
+                  <motion.div
+                    layoutId="underline"
+                    className="h-[2px] bg-[#53ef92] absolute left-2 right-2 -bottom-1 rounded-full shadow-[0_0_10px_#53ef92]"
+                  />
+                )}
+              </li>
+            ))}
+          </ul>
+
+          {/* Buttons + Theme */}
+          <div className="flex items-center gap-4">
+            
+            {/* Login */}
+            <Button
+              className="
+                bg-[#48d07e]
+                hover:bg-[#42d67d]
+                text-[#08223d]
+                font-semibold
+                px-4
+                py-2
+                rounded-md
+                transition-all
+                duration-300
+                hover:scale-105
+              "
+            >
+              Log In
+            </Button>
+
+            {/* Signup */}
+            <Button
+              variant="bordered"
+              className="
+                border-2
+                border-[#48d07e]
+                text-[#53ef92]
+                hover:bg-[#48d07e]
+                hover:text-[#08223d]
+                font-semibold
+                px-4
+                py-2
+                rounded-md
+                transition-all
+                duration-300
+                hover:scale-105
+              "
+            >
+              Sign Up
+            </Button>
+
+            {/* Theme Toggle */}
+            <button
+              onClick={() =>
+                setTheme(theme === "dark" ? "light" : "dark")
+              }
+              className="
+                p-2
+                rounded-full
+                bg-white/10
+                hover:bg-white/20
+                transition-all
+              "
+            >
+              {theme === "dark" ? (
+                <Sun className="text-yellow-400" size={20} />
+              ) : (
+                <Moon className="text-white" size={20} />
               )}
-            </li>
-          ))}
-        </ul>
+            </button>
+          </div>
+        </div>
 
-         <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 ml-55 lg:ml-0 transition-all"
-    >
-      {theme === "dark" ? (
-        <Sun className="text-yellow-400 " size={20} />
-      ) : (
-        <Moon className="text-blue-500" size={20} />
-      )}
-    </button>
+        {/* Mobile Right Side */}
+        <div className="flex items-center gap-3 lg:hidden">
 
-        {/* Hamburger */}
-        <button className="md:hidden text-white" onClick={() => setOpen(!open)}>
-          {open ? <HiX size={26} /> : <HiOutlineMenu size={26} />}
-        </button>
+          {/* Theme Toggle */}
+          <button
+            onClick={() =>
+              setTheme(theme === "dark" ? "light" : "dark")
+            }
+            className="
+              p-2
+              rounded-full
+              bg-white/10
+              hover:bg-white/20
+              transition-all
+            "
+          >
+            {theme === "dark" ? (
+              <Sun className="text-yellow-400" size={20} />
+            ) : (
+              <Moon className="text-white" size={20} />
+            )}
+          </button>
+
+          {/* Hamburger */}
+          <button
+            className="text-white"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? (
+              <HiX size={28} />
+            ) : (
+              <HiOutlineMenu size={28} />
+            )}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu with Animation */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {open && (
           <>
-            {/* background blur */}
+            {/* Background Blur */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
               onClick={() => setOpen(false)}
             />
 
-            {/* slide menu */}
-            <motion.ul
+            {/* Drawer */}
+            <motion.div
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              transition={{ type: "spring", stiffness: 120 }}
-              className="fixed top-0 left-0 h-full w-72 bg-[#124170] p-6 flex flex-col gap-6 z-50"
+              transition={{
+                type: "spring",
+                stiffness: 120,
+              }}
+              className="
+                fixed
+                top-0
+                left-0
+                h-full
+                w-72
+                bg-[#124170]
+                p-6
+                z-50
+                flex
+                flex-col
+              "
             >
-              {menu.map((item) => (
-                <li key={item.path}>
-                  <Link
-                    href={item.path}
-                    onClick={() => setOpen(false)}
-                    className={`block px-2 py-2 rounded transition-all ${
-                      pathname === item.path
-                        ? "bg-[#67C090] text-[#124170]"
-                        : "hover:text-[#67C090]"
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </motion.ul>
+              {/* Top */}
+              <div className="flex items-center justify-between mb-8">
+                <h1 className="text-2xl font-bold text-[#53ef92]">
+                  Medi<span className="text-[#33a25c]">Queue</span>
+                </h1>
+
+                <button
+                  onClick={() => setOpen(false)}
+                  className="text-white"
+                >
+                  <HiX size={28} />
+                </button>
+              </div>
+
+              {/* Links */}
+              <ul className="flex flex-col gap-3">
+                {menu.map((item) => (
+                  <li key={item.path}>
+                    <Link
+                      href={item.path}
+                      onClick={() => setOpen(false)}
+                      className={`
+                        block
+                        px-4
+                        py-3
+                        rounded-xl
+                        font-medium
+                        transition-all
+                        duration-300
+                        ${
+                          pathname === item.path
+                            ? "bg-[#53ef92] text-[#08223d]"
+                            : "text-white hover:bg-white/10 hover:text-[#53ef92]"
+                        }
+                      `}
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Bottom Buttons */}
+              <div className="mt-auto flex flex-col gap-3 pt-6">
+                
+                <Button
+                  className="
+                    w-full
+                    bg-[#48d07e]
+                    text-[#08223d]
+                    font-semibold
+                    py-3
+                      hover:bg-[#51e48b]
+                  "
+                >
+                  Log In
+                </Button>
+
+                <Button
+                  variant="bordered"
+                  className="
+                    w-full
+                    border-2
+                    border-[#48d07e]
+                    text-[#53ef92]
+                    hover:bg-[#48d07e]
+                    hover:text-[#08223d]
+                  "
+                >
+                  Sign Up
+                </Button>
+              </div>
+            </motion.div>
           </>
         )}
       </AnimatePresence>

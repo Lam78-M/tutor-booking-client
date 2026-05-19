@@ -1,18 +1,19 @@
 'use client'
 import Link from "next/link";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaLocationArrow, FaPhone, FaTwitter } from "react-icons/fa";
+import { SiGmail } from "react-icons/si";
 
 export default function Footer() {
   return (
 <footer
-  className="bg-[#08223d]  text-white mt-10 min-h-[200px]"
+  className="bg-[#08223d]  text-white  min-h-[200px]"
   
 >
       <div className="max-w-7xl mx-auto px-6 py-15 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
 
         {/* Brand */}
         <div>
-          <h1 className="text-2xl font-bold text-[#AAFFC7]">
+          <h1 className="text-3xl font-bold text-[#AAFFC7]">
             Medi<span className="text-[#67C090]">Queue</span>
           </h1>
           <p className="mt-3 text-sm text-gray-300">
@@ -22,10 +23,10 @@ export default function Footer() {
 
         {/* Services */}
         <div>
-          <h2 className="text-lg font-semibold text-[#AAFFC7] mb-4 sm:pl-0  lg:pl-10">
+          <h2 className="text-2xl font-semibold text-[#AAFFC7] mb-4 sm:pl-0  lg:pl-15">
             Services
           </h2>
-          <ul className="space-y-3 text-gray-300 sm:pl-0  lg:pl-10">
+          <ul className="space-y-3 text-gray-300 sm:pl-0  lg:pl-15">
             {["Find Tutors", "Book Sessions", "Learning Resources", "Support"].map(
               (item) => (
                 <li key={item}>
@@ -43,7 +44,7 @@ export default function Footer() {
 
         {/* Company */}
         <div>
-          <h2 className="text-lg font-semibold text-[#AAFFC7] mb-4 sm:pl-0  lg:pl-10">
+          <h2 className="text-2xl font-semibold text-[#AAFFC7] mb-4 sm:pl-0  lg:pl-10">
             Company
           </h2>
           <ul className="space-y-3 text-gray-300 sm:pl-0  lg:pl-10">
@@ -62,27 +63,27 @@ export default function Footer() {
 
         {/* Contact + Social */}
         <div>
-          <h2 className="text-lg font-semibold text-[#AAFFC7] mb-4">
+          <h2 className="text-2xl font-semibold text-[#AAFFC7] mb-4">
             Contact
           </h2>
 
           <div className="space-y-2 text-gray-300 text-sm">
-            <p className="hover:text-[#67C090] transition-all duration-300">
-              📍 Kaliganj, Dhaka, Bangladesh
+            <p className="hover:text-[#67C090] transition-all duration-300 flex items-center gap-2 ">
+              <FaLocationArrow/> Khilkhet, Dhaka, Bangladesh
             </p>
 
             <a
               href="mailto:support@mediqueue.com"
-              className="block hover:text-[#67C090] transition-all duration-300"
+              className=" hover:text-[#67C090] transition-all duration-300 flex items-center gap-2 "
             >
-              📧 support@mediqueue.com
+              <SiGmail/> ayatlam@gmail.com
             </a>
 
             <a
               href="tel:+8801XXXXXXXXX"
-              className="block hover:text-[#67C090] transition-all duration-300"
+              className=" hover:text-[#67C090] transition-all duration-300 flex items-center gap-2"
             >
-              📞 +880 1XXXXXXXXX
+              <FaPhone/> +880 1602514628
             </a>
           </div>
 

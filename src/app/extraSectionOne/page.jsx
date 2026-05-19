@@ -8,7 +8,7 @@ const ExtraSectionOne = () => {
 
 
 <section
-  className="py-20 px-6   mt-20 bg"
+  className="py-20 px-6 mt-40 mb-40 bg"
 >
   <div className="max-w-6xl mx-auto 
   
@@ -33,7 +33,7 @@ const ExtraSectionOne = () => {
     </motion.div>
 
     {/* Steps */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
 
       {/* Step 1 */}
       <motion.div
@@ -42,12 +42,12 @@ const ExtraSectionOne = () => {
         transition={{ duration: 0.5, delay: 0.1 }}
         viewport={{ once: false, amount: 0.3 }}
         whileHover={{ y: -8 }}
-        className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl hover:bg-[#AAFFC7] transition duration-300 text-center"
+        className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl hover:bg-[#AAFFC7] transition duration-300 text-center  border border-[#31d472]"
       >
 
         <motion.div
           whileHover={{ rotate: 10, scale: 1.1 }}
-          className="w-16 h-16 mx-auto rounded-full bg-[#AAFFC7] flex items-center justify-center text-[#124170] text-3xl font-bold"
+          className="w-16 h-16 mx-auto rounded-full bg-[#AAFFC7] flex items-center justify-center text-[#124170] text-3xl font-bold  border border-[#31d472]"
         >
           <Search/>
         </motion.div>
@@ -68,12 +68,12 @@ const ExtraSectionOne = () => {
         transition={{ duration: 0.5, delay: 0.2 }}
         viewport={{ once: false, amount: 0.3 }}
         whileHover={{ y: -8 }}
-        className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl hover:bg-[#AAFFC7] transition duration-300 text-center"
+        className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl hover:bg-[#AAFFC7] transition duration-300 text-center  border border-[#31d472]"
       >
 
         <motion.div
           whileHover={{ rotate: -10, scale: 1.1 }}
-          className="w-16 h-16 mx-auto rounded-full bg-[#AAFFC7] flex items-center justify-center text-[#124170] text-3xl font-bold"
+          className="w-16 h-16 mx-auto rounded-full bg-[#AAFFC7] flex items-center justify-center text-[#124170] text-3xl font-bold  border border-[#31d472]"
         >
           <Users></Users>
         </motion.div>
@@ -94,12 +94,12 @@ const ExtraSectionOne = () => {
         transition={{ duration: 0.5, delay: 0.3 }}
         viewport={{ once: false, amount: 0.3 }}
         whileHover={{ y: -8 }}
-        className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl hover:bg-[#AAFFC7] transition duration-300 text-center"
+        className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl hover:bg-[#AAFFC7] transition duration-300 text-center  border border-[#31d472]"
       >
 
         <motion.div
           whileHover={{ rotate: 10, scale: 1.1 }}
-          className="w-16 h-16 mx-auto rounded-full bg-[#AAFFC7] flex items-center justify-center text-[#124170] text-3xl font-bold"
+          className="w-16 h-16 mx-auto rounded-full bg-[#AAFFC7] flex items-center justify-center text-[#124170] text-3xl font-bold  border border-[#31d472]"
         >
           <Calendar/>
         </motion.div>
@@ -120,12 +120,12 @@ const ExtraSectionOne = () => {
         transition={{ duration: 0.5, delay: 0.4 }}
         viewport={{ once: false, amount: 0.3 }}
         whileHover={{ y: -8 }}
-        className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl hover:bg-[#AAFFC7] transition duration-300 text-center"
+        className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl hover:bg-[#AAFFC7] transition duration-300 text-center  border border-[#31d472]"
       >
 
         <motion.div
           whileHover={{ rotate: -10, scale: 1.1 }}
-          className="w-16 h-16 mx-auto rounded-full bg-[#AAFFC7] flex items-center justify-center text-[#124170] text-3xl font-bold"
+          className="w-16 h-16 mx-auto rounded-full bg-[#AAFFC7] flex items-center justify-center text-[#124170] text-3xl font-bold  border border-[#31d472]"
         >
           <Rocket/>
         </motion.div>
