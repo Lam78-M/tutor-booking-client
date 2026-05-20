@@ -5,10 +5,6 @@ import Footer from "@/components/Footer";
 import Providers from "./providers";
 import { Toaster } from "react-hot-toast";
 
-
-
-
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,21 +23,24 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html
-      lang="en" suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      lang="en"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable}`}
     >
-      <body className="min-h-full flex flex-col">
-      
+      <body >
+        <Providers>
+          <Navbar />
 
-      <Providers>
-          <Navbar></Navbar>
-      
-          {children}
-         
-        <Footer></Footer>
-      </Providers>
-      <Toaster position="top-right"/>
-        </body>
+          {/* MAIN CONTENT */}
+       
+            {children}
+   
+
+          <Footer />
+        </Providers>
+
+        <Toaster position="top-right" />
+      </body>
     </html>
   );
 }

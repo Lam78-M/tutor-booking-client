@@ -140,7 +140,7 @@ const HomePageTutor = ({tutor}) => {
 
              <Link href={`/homepagetutor/${tutor._id}`}>
               <button className="w-full mt-2 p-2 rounded-lg bg-green-700 text-white hover:bg-green-800 transition">
-                Read more
+                Book Now
               </button>
              </Link>
             </div>

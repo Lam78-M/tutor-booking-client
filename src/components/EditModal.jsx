@@ -1,65 +1,65 @@
 "use client";
 import { motion } from "framer-motion";
-import { TextField,Label, Select,ListBox,Input, FieldError,Button, Card } from "@heroui/react";
-import toast from "react-hot-toast";
 
+import {Button, 
+      FieldError, 
+       Input, 
+       Label, 
+       Modal, 
+       Surface, 
+       TextField, 
+       Select, 
+       ListBox} from "@heroui/react";
+import { BiSolidEditAlt } from "react-icons/bi";
 
-const inputStyle = `
-  !rounded-none
-  bg-white
-  dark:bg-slate-900
-  text-black
-  dark:text-white
-  border
-  border-green-300
-  dark:border-slate-700
-`;
-export default function AddTutor() {
-
-  // submition link--------------
-  const onSubmit = async(e)=>{
+export function EditModal() {
+     const onSubmit = async(e)=>{
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     const addtutor = Object.fromEntries(formData.entries())
     console.log(addtutor)
 
   // calling api-------------
-  const res = await fetch('http://localhost:5000/tutor',{
-    method: "POST",
-    headers: {
-      'content-type' : 'application/json'
-    },
-    body: JSON.stringify(addtutor)
-  })
+//   const res = await fetch('http://localhost:5000/tutor',{
+//     method: "POST",
+//     headers: {
+//       'content-type' : 'application/json'
+//     },
+//     body: JSON.stringify(addtutor)
+//   })
 
- const data = await res.json()
-     if(res.ok){
-      toast.success("your are successffull")
-     }
+//  const data = await res.json()
+//      if(res.ok){
+//       toast.success("your are successffull")
+//      }
   }
-
-
   return (
-<div className=" p-5 max-w-3xl   xl mx-auto shadow-xl mt-10 mb-10 border bg-white dark:bg-[#0f172a] transition-colors duration-300">
-  <div className="text-center pt-10">
+    <Modal>
+       <button
+                           className= " border p-2 text-blue-600 hover:text-blue-800 text-lg hover:bg-green-200"
+                           title="Edit"
+                         >
+                         <BiSolidEditAlt />
+                         </button>
+      <Modal.Backdrop>
+        <Modal.Container placement="auto">
+          <Modal.Dialog className="sm:max-w-md">
+            <Modal.CloseTrigger />
+            <Modal.Header>
+              <Modal.Icon className="bg-accent-soft text-accent-soft-foreground">
+              
+              </Modal.Icon>
+              <Modal.Heading>Contact Us</Modal.Heading>
+              <p className="mt-1.5 text-sm leading-5 text-muted">
+                Fill out the form below and well get back to you. The modal adapts automatically
+                when the keyboard appears on mobile.
+              </p>
+            </Modal.Header>
+            <Modal.Body className="p-6">
+              <Surface variant="default">
+                
 
-  <span className="bg-[#AAFFC7] text-[#124170] px-4 py-2 rounded-full text-sm font-medium">
-    Tutor Booking
-  </span>
-
-  <h2 className="text-4xl font-bold text-[#2572bf] mt-4">
-    Add Your Preferred Teacher
-  </h2>
-
-  <p className="mt-4 text-[#475569] max-w-2xl mx-auto">
-    Fill in the details below to connect with experienced  <br></br> tutors and start learning smarter.
-  </p>
-
-</div>
-
-  <Card className="!rounded-none bg-transparent shadow-none border-0">
-
-    <motion.form
+  <motion.form
     onSubmit={onSubmit}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -386,7 +386,6 @@ viewport={{ once: false, amount: 0.2 }}
         viewport={{ once: false, amount: 0.2 }}
       >
         <Button
-        onSubmit={onsubmit}
           type="submit"
        className=" w-full !rounded-none mt-8 border border-green-500  bg-[#53ef92]  hover:bg-green-500 px-5 py-2 transition-all text-slate-700"
         >
@@ -395,9 +394,17 @@ viewport={{ once: false, amount: 0.2 }}
       </motion.div>
 
     </motion.form>
-
-  </Card>
-
-</div>
+              </Surface>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button slot="close" variant="secondary">
+                Cancel
+              </Button>
+              <Button slot="close">Send Message</Button>
+            </Modal.Footer>
+          </Modal.Dialog>
+        </Modal.Container>
+      </Modal.Backdrop>
+    </Modal>
   );
 }

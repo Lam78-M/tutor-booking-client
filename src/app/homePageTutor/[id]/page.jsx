@@ -3,6 +3,7 @@ import React from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { Button } from '@heroui/react';
 
 const TutorDetailsPage = async({params}) => {
   const {id}  = await params
@@ -32,8 +33,8 @@ const TutorDetailsPage = async({params}) => {
   <div className="md:w-2/3 w-full flex flex-col justify-between">
 
     {/* TOP INFO */}
-    <div className="space-y-2">
-
+    <div className="space-y-2 relative">
+     
       <p className="text-sm text-gray-500 dark:text-gray-400">
         📍 {location}
       </p>
@@ -75,11 +76,13 @@ const TutorDetailsPage = async({params}) => {
         💰 {hourlyFee} BDT / hour
       </p>
 
-     <Link href={'/my-tutors'}>
-      <button className="px-5 py-2 rounded-lg bg-gradient-to-r from-green-600 to-green-800 text-white font-medium hover:scale-105 transition">
-        Add Session
-      </button>
-     </Link>
+     <Link
+  href={`/mybookedsessions?tutorName=${tutorName}&subject=${subject}&photo=${photo}&fee=${hourlyFee}`}
+>
+  <button className="px-5 py-2 rounded-lg bg-green-600 text-white">
+    Add Session
+  </button>
+</Link>
 
     </div>
 
