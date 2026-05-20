@@ -5,8 +5,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
+import Link from "next/link";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Button } from "@heroui/react";
 
 export default function HeroSlider() {
   return (
@@ -47,9 +48,13 @@ export default function HeroSlider() {
                   Learn smarter with trusted tutors and interactive sessions.
                 </p>
 
-                <button className="mt-6 px-6 py-3 bg-[#67C090] hover:bg-[#54a87a] transition-all duration-300 rounded-lg text-white font-semibold">
+
+<Link href={'/tutor'}>
+
+                <Button className="mt-6 px-6 py-5 bg-[#67C090] hover:bg-[#54a87a] transition-all duration-300 rounded-lg text-white font-semibold">
                  Get Tutor
-                </button>
+                </Button>
+</Link>
               </div>
             </div>
           </div>
@@ -74,10 +79,12 @@ export default function HeroSlider() {
                 <p className="mt-4 text-lg text-gray-200">
                   Schedule classes anytime from anywhere with ease.
                 </p>
+              <Link href={'/tutor'}>
 
-                <button className="mt-6 px-6 py-3 bg-[#67C090] hover:bg-[#54a87a] transition-all duration-300 rounded-lg text-white font-semibold">
-               Get Tutor
-                </button>
+                <Button className="mt-6 px-6 py-5 bg-[#67C090] hover:bg-[#54a87a] transition-all duration-300 rounded-lg text-white font-semibold">
+                 Get Tutor
+                </Button>
+</Link>
               </div>
             </div>
           </div>
@@ -102,10 +109,12 @@ export default function HeroSlider() {
                 <p className="mt-4 text-lg text-gray-200">
                   Personalized learning paths for students and educators.
                 </p>
+<Link href={'/tutor'}>
 
-                <button className="mt-6 px-6 py-3 bg-[#67C090] hover:bg-[#54a87a] transition-all duration-300 rounded-lg text-white font-semibold">
+                <Button className="mt-6 px-6 py-5 bg-[#67C090] hover:bg-[#54a87a] transition-all duration-300 rounded-lg text-white font-semibold">
                  Get Tutor
-                </button>
+                </Button>
+</Link>
               </div>
             </div>
           </div>
@@ -142,13 +151,13 @@ export default function HeroSlider() {
             </div>
 
             {/* Button */}
-            <a
-              href="#"
-              className="px-6 py-3 rounded-lg bg-white text-[#1f5f42] font-semibold shadow-lg hover:scale-105 active:scale-95 transition"
-            >
-              Shop Now
-            </a>
+           
+<Link href={'/tutor'}>
 
+                <Button className="mt-6 px-6 py-5 bg-[#67C090] hover:bg-[#54a87a] transition-all duration-300 rounded-lg text-white font-semibold">
+                 Get Tutor
+                </Button>
+</Link>
           </div>
 
         </div>

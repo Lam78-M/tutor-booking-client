@@ -1,15 +1,20 @@
 import React from "react";
 import Image from "next/image";
+import { FaMoneyBillWave } from "react-icons/fa";
 
-const TutorAll = async () => {
+const Tutor = async () => {
   const res = await fetch("http://localhost:5000/tutor", {
     cache: "no-store",
   });
 
-  const tutors = await res.json();
+  let tutors = await res.json();
+
+
 
   return (
-    <div className="container mx-auto lg:px-30 mt-20 mb-20">
+  
+    <div className="container mx-auto lg:px-30 mt-40 mb-20">
+      <h1 className="text-4xl text-center font-semibold mb-10">Teacher Panel</h1>
       <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {tutors.map((tutor) => (
           <div
@@ -28,23 +33,23 @@ const TutorAll = async () => {
             {/* Content */}
             <div className="mt-4 space-y-2 text-left">
                 <h1 className="text-sm text-gray-600">{tutor.location}</h1>
-              <h2 className="text-xl font-bold"><span className="text-gray-600 font-normal ">Name</span>-{tutor.tutorName}</h2>
+              <h2 className="text-xl font-semibold"><span className="text-gray-600 font-normal ">Name</span>-{tutor.tutorName}</h2>
 
               <p className="text-sm text-gray-600 dark:text-gray-300">
                 Subject : {tutor.subject}
               </p>
               <h2>Session Start : {tutor.sessionStart}</h2>
 
-              <p className="text-sm">⏰ {tutor.available}</p>
-              <p>Total Slot : {tutor.totalSlot}</p>
+            
+          
 
-              <p className="font-semibold text-violet-600">
-                💰Fees :  {tutor.hourlyFee} BDT / hour
+              <p className="font-semibold text-violet-700 flex items-center gap-2">
+              <FaMoneyBillWave className="text-[#cfb313]" /> Fees :  {tutor.hourlyFee} BDT / hour
               </p>
 
-              <button className="w-full mt-2 p-2 rounded-lg bg-violet-600 text-white hover:bg-violet-700 transition">
-                Read more
-              </button>
+           <button className="w-full mt-2 p-2 rounded-lg bg-green-700 text-white hover:bg-green-700 transition">
+  Read more
+</button>
             </div>
           </div>
         ))}
@@ -53,4 +58,4 @@ const TutorAll = async () => {
   );
 };
 
-export default TutorAll;
+export default Tutor;     

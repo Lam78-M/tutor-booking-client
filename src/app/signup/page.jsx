@@ -70,7 +70,7 @@ export default function SignupPage() {
         </div>
 
         {/* Register Button */}
-        <button className="w-full py-3 rounded-lg font-medium  border border-green-600 text-[#0f3d2e] bg-[#a4e2a4] hover:opacity-90 transition-all duration-300 shadow-md">
+        <button className="w-full py-3 rounded-lg font-medium  border border-green-600 text-[#0f3d2e] bg-[#abe1ab] hover:opacity-90 transition-all duration-300 shadow-md">
           Register
         </button>
 
