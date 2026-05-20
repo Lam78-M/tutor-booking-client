@@ -21,7 +21,7 @@ export default function Navbar() {
     { name: "Tutors", path: "/tutor" },
     { name: "Add Tutor", path: "/add-tutor" },
     { name: "My Tutors", path: "/my-tutors" },
-    { name: "My Booked Sessions", path: "/sessions" },
+    { name: "My Booked Sessions", path: "/mybookedsessions" },
   ];
 
   return (

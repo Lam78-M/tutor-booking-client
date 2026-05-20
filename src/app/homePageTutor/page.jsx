@@ -1,8 +1,9 @@
 'use client'
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-const HomePageTutor = () => {
+const HomePageTutor = ({tutor}) => {
   const [tutors, setTutors] = useState([]);
   const [search, setSearch] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -16,6 +17,7 @@ const HomePageTutor = () => {
     };
     fetchTutors();
   }, []);
+   
 
   // ---------------- FILTER LOGIC ----------------
   const filteredTutors = tutors
@@ -88,14 +90,12 @@ const HomePageTutor = () => {
         </div>
 
         {/* Reset */}
-       <div  className="flex items-end">
-         <button
+        <button
           onClick={resetFilters}
-          className="w-full p-3  rounded-lg border hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+          className="w-full p-3 rounded-lg border hover:bg-gray-100 dark:hover:bg-gray-800 transition"
         >
           Reset Filters
         </button>
-       </div>
       </div>
 
       {/* TITLE */}
@@ -138,9 +138,11 @@ const HomePageTutor = () => {
                 💰 Fees: {tutor.hourlyFee} BDT / hour
               </p>
 
+             <Link href={`/homepagetutor/${tutor._id}`}>
               <button className="w-full mt-2 p-2 rounded-lg bg-green-700 text-white hover:bg-green-800 transition">
                 Read more
               </button>
+             </Link>
             </div>
           </div>
         ))}
