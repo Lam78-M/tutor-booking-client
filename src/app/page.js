@@ -3,7 +3,8 @@ import HeroCarousel from "./heroCarousel/page";
 import ExtraSectionOne from "./extraSectionOne/page";
 import ExtraSectionTwo from "./extraSectionTwo/page";
 import ShowingGallary from "./showingGalllary/page";
-import HomePageTutor from "./homepagetutor/page";
+
+
 
 
 
@@ -15,7 +16,7 @@ export default function Home() {
     <HeroCarousel></HeroCarousel>
 
     
-      <HomePageTutor></HomePageTutor>
+    
       <ExtraSectionOne></ExtraSectionOne>
 
       <ShowingGallary></ShowingGallary>
