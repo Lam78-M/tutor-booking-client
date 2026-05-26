@@ -6,6 +6,7 @@ import Providers from "./providers";
 import { Toaster } from "react-hot-toast";
 
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,17 +29,14 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
-      <body >
+      <body className="" >
         <Providers>
           <Navbar />
-
+             
           {/* MAIN CONTENT */}
-       
+     
             {children}
-   
-
           <Footer />
-       
         </Providers>
 
         <Toaster position="top-right" />

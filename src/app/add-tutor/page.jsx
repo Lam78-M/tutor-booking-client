@@ -24,7 +24,7 @@ export default function AddTutor() {
     console.log(addtutor)
 
   // calling api-------------
-  const res = await fetch('http://localhost:5000/tutor',{
+  const res = await fetch('http://localhost:5000/add-tutor',{
     method: "POST",
     headers: {
       'content-type' : 'application/json'
@@ -59,342 +59,197 @@ export default function AddTutor() {
 
   <Card className="!rounded-none bg-transparent shadow-none border-0">
 
-    <motion.form
-    onSubmit={onSubmit}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7 }}
-viewport={{ once: false, amount: 0.2 }}
-      className="p-10 space-y-2 !rounded-none"
+   <motion.form
+  onSubmit={onSubmit}
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.7 }}
+  viewport={{ once: false, amount: 0.2 }}
+  className="p-10 space-y-2 !rounded-none"
+>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+    {/* Tutor Name */}
+    <TextField name="tutorName" isRequired>
+      <Label className="text-gray-700 dark:text-gray-200">
+        Tutor Name
+      </Label>
+
+      <Input placeholder="John Doe" className={inputStyle} />
+      <FieldError />
+    </TextField>
+
+    {/* Photo URL */}
+    <TextField name="photo" isRequired>
+      <Label className="text-gray-700 dark:text-gray-200">
+        Photo URL
+      </Label>
+
+      <Input placeholder="Image URL" className={inputStyle} />
+      <FieldError />
+    </TextField>
+
+    {/* Subject */}
+    <Select
+      name="subject"
+      isRequired
+      className="w-full"
+      placeholder="Select Subject"
     >
+      <Label className="text-gray-700 dark:text-gray-200">
+        Subject / Category
+      </Label>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-        {/* Tutor Name */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4 }}
-      viewport={{ once: false, amount: 0.2 }}
-          className="md:col-span-2"
-        >
-          <TextField name="tutorName" isRequired>
-            <Label className="text-gray-700 dark:text-gray-200">
-              Tutor Name
-            </Label>
-
-         <Input
-  placeholder="John Doe"
-  className={inputStyle}
-/>
-
-            <FieldError />
-          </TextField>
-        </motion.div>
-
-        {/* Photo URL */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-         viewport={{ once: false, amount: 0.2 }}
-          className="md:col-span-2"
-        >
-          <TextField name="photo" isRequired>
-            <Label className="text-gray-700 dark:text-gray-200">
-              Photo URL
-            </Label>
-
-           <Input
-  placeholder="John Doe"
-  className={inputStyle}
-/>
-
-            <FieldError />
-          </TextField>
-        </motion.div>
-
-        {/* Subject */}
-        <motion.div
-          whileHover={{ y: -5 }}
-          transition={{ type: "spring", stiffness: 200 }}
-          viewport={{ once: false, amount: 0.2 }}
-        >
-          <Select
-            name="subject"
-            isRequired
-            className="w-full"
-            placeholder="Select Subject"
-          >
-            <Label className="text-gray-700 dark:text-gray-200">
-              Subject / Category
-            </Label>
-
-            <Select.Trigger
-              className="
-                !rounded-none
-                bg-white
-                dark:bg-slate-900
-                text-black
-                dark:text-white
-                border
-                border-green-300
-                dark:border-slate-700
-              "
-            >
-              <Select.Value />
-              <Select.Indicator />
-            </Select.Trigger>
-
-            <Select.Popover className="!rounded-none bg-white dark:bg-slate-900 dark:text-white">
-              <ListBox>
-                <ListBox.Item id="Mathematics">
-                  Mathematics
-                </ListBox.Item>
-
-                <ListBox.Item id="Physics">
-                  Physics
-                </ListBox.Item>
-
-                <ListBox.Item id="Chemistry">
-                  Chemistry
-                </ListBox.Item>
-
-                <ListBox.Item id="Biology">
-                  Biology
-                </ListBox.Item>
-
-                <ListBox.Item id="English">
-                  English
-                </ListBox.Item>
-                   <ListBox.Item id="English">
-                  ICT
-                </ListBox.Item>
-              </ListBox>
-            </Select.Popover>
-          </Select>
-        </motion.div>
-
-        {/* Hourly Fee */}
-        <motion.div
-          whileHover={{ y: -5 }}
-          transition={{ type: "spring", stiffness: 200 }}
-          viewport={{ once: false, amount: 0.2 }}
-        >
-          <TextField name="hourlyFee" type="number" isRequired>
-
-            <Label className="text-gray-700 dark:text-gray-200">
-              Hourly Fee
-            </Label>
-
-            <Input
-  placeholder="John Doe"
-  className={inputStyle}
-/>
-            <FieldError />
-
-          </TextField>
-        </motion.div>
-
-        {/* Available Days */}
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.2 }}
-          viewport={{ once: false, amount: 0.2 }}
-        >
-          <TextField name="availableDays" isRequired>
-
-            <Label className="text-gray-700 dark:text-gray-200">
-              Available Days
-            </Label>
-
-           <Input
-  placeholder="John Doe"
-  className={inputStyle}
-/>
-
-            <FieldError />
-
-          </TextField>
-        </motion.div>
-
-        {/* Time Slot */}
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.2 }}
-          viewport={{ once: false, amount: 0.2 }}
-        >
-          <TextField name="timeSlot" isRequired>
-
-            <Label className="text-gray-700 dark:text-gray-200">
-              Available Time Slot
-            </Label>
-
-            <Input
-  placeholder="John Doe"
-  className={inputStyle}
-/>
-
-            <FieldError />
-
-          </TextField>
-        </motion.div>
-
-        {/* Total Slot */}
-        <motion.div
-          whileHover={{ y: -5 }}
-          transition={{ type: "spring", stiffness: 200 }}
-          viewport={{ once: false, amount: 0.2 }}
-        >
-          <TextField name="totalSlot" type="number" isRequired>
-
-            <Label className="text-gray-700 dark:text-gray-200">
-              Total Slot
-            </Label>
-
-           <Input
-  placeholder="John Doe"
-  className={inputStyle}
-/>
-
-            <FieldError />
-
-          </TextField>
-        </motion.div>
-
-        {/* Session Start Date */}
-        <motion.div
-          whileHover={{ y: -5 }}
-          transition={{ type: "spring", stiffness: 200 }}
-          viewport={{ once: false, amount: 0.2 }}
-        >
-          <TextField name="sessionStartDate" type="date" isRequired>
-
-            <Label className="text-gray-700 dark:text-gray-200">
-              Session Start Date
-            </Label>
-
-            <Input
-  placeholder="John Doe"
-  className={inputStyle}
-/>
-
-            <FieldError />
-
-          </TextField>
-        </motion.div>
-
-        {/* Institution */}
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.2 }}
-          viewport={{ once: false, amount: 0.2 }}
-        >
-          <TextField name="institution" isRequired>
-
-            <Label className="text-gray-700 dark:text-gray-200">
-              Institution & Experience
-            </Label>
-
-           <Input
-  placeholder="John Doe"
-  className={inputStyle}
-/>
-
-            <FieldError />
-
-          </TextField>
-        </motion.div>
-
-        {/* Location */}
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.2 }}
-          viewport={{ once: false, amount: 0.2 }}
-        >
-          <TextField name="location" isRequired>
-
-            <Label className="text-gray-700 dark:text-gray-200">
-              Location (Area/City)
-            </Label>
-
-           <Input
-  placeholder="John Doe"
-  className={inputStyle}
-/>
-            <FieldError />
-
-          </TextField>
-        </motion.div>
-
-        {/* Teaching Mode */}
-        <motion.div
-          whileHover={{ y: -5 }}
-          transition={{ type: "spring", stiffness: 200 }}
-          viewport={{ once: false, amount: 0.2 }}
-        >
-          <Select
-            name="teachingMode"
-            isRequired
-            className="w-full"
-            placeholder="Select Mode"
-          >
-            <Label className="text-gray-700 dark:text-gray-200">
-              Teaching Mode
-            </Label>
-
-            <Select.Trigger
-              className="
-                !rounded-none
-                bg-white
-                dark:bg-slate-900
-                text-black
-                dark:text-white
-                border
-                border-green-300
-                dark:border-slate-700
-              "
-            >
-              <Select.Value />
-              <Select.Indicator />
-            </Select.Trigger>
-
-            <Select.Popover className="!rounded-none bg-white dark:bg-slate-900 dark:text-white">
-              <ListBox>
-                <ListBox.Item id="Online">
-                  Online
-                </ListBox.Item>
-
-                <ListBox.Item id="Offline">
-                  Offline
-                </ListBox.Item>
-
-                <ListBox.Item id="Both">
-                  Both
-                </ListBox.Item>
-              </ListBox>
-            </Select.Popover>
-          </Select>
-        </motion.div>
-
-      </div>
-
-      {/* Button */}
-      <motion.div
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.95 }}
-        viewport={{ once: false, amount: 0.2 }}
+      <Select.Trigger
+        className="
+          !rounded-none
+          bg-white
+          dark:bg-slate-900
+          text-black
+          dark:text-white
+          border
+          border-green-300
+          dark:border-slate-700
+        "
       >
-        <Button
-        onSubmit={onsubmit}
-          type="submit"
-       className=" w-full !rounded-none mt-8 border border-green-500  bg-[#53ef92]  hover:bg-green-500 px-5 py-2 transition-all text-slate-700"
-        >
-          Add Tutor
-        </Button>
-      </motion.div>
+        <Select.Value />
+        <Select.Indicator />
+      </Select.Trigger>
 
-    </motion.form>
+      <Select.Popover className="!rounded-none bg-white dark:bg-slate-900 dark:text-white">
+        <ListBox>
+          <ListBox.Item id="Mathematics">Mathematics</ListBox.Item>
+          <ListBox.Item id="Physics">Physics</ListBox.Item>
+          <ListBox.Item id="Chemistry">Chemistry</ListBox.Item>
+          <ListBox.Item id="Biology">Biology</ListBox.Item>
+          <ListBox.Item id="English">English</ListBox.Item>
+          <ListBox.Item id="ICT">ICT</ListBox.Item>
+          <ListBox.Item id="Arabic">Arabic</ListBox.Item>
+        </ListBox>
+      </Select.Popover>
+    </Select>
+
+    {/* Available (FIXED FIELD NAME ONLY) */}
+    <TextField name="available" isRequired>
+      <Label className="text-gray-700 dark:text-gray-200">
+        Available Days & Time
+      </Label>
+
+      <Input
+        placeholder="Fri - Tue | 7:00 AM - 10:00 AM"
+        className={inputStyle}
+      />
+      <FieldError />
+    </TextField>
+
+    {/* Hourly Fee */}
+    <TextField name="hourlyFee" type="number" isRequired>
+      <Label className="text-gray-700 dark:text-gray-200">
+        Hourly Fee
+      </Label>
+
+      <Input placeholder="550" className={inputStyle} />
+      <FieldError />
+    </TextField>
+
+    {/* Total Slot */}
+    <TextField name="totalSlot" type="number" isRequired>
+      <Label className="text-gray-700 dark:text-gray-200">
+        Total Slot
+      </Label>
+
+      <Input placeholder="28" className={inputStyle} />
+      <FieldError />
+    </TextField>
+
+    {/* Session Start Date */}
+    <TextField name="sessionStart" type="date" isRequired>
+      <Label className="text-gray-700 dark:text-gray-200">
+        Session Start
+      </Label>
+
+      <Input className={inputStyle} />
+      <FieldError />
+    </TextField>
+
+    {/* Institution */}
+    <TextField name="institution" isRequired>
+      <Label className="text-gray-700 dark:text-gray-200">
+        Institution
+      </Label>
+
+      <Input
+        placeholder="Islamic University | Hafiza & Tutor"
+        className={inputStyle}
+      />
+      <FieldError />
+    </TextField>
+
+    {/* Location */}
+    <TextField name="location" isRequired>
+      <Label className="text-gray-700 dark:text-gray-200">
+        Location (Area/City)
+      </Label>
+
+      <Input placeholder="Old Dhaka" className={inputStyle} />
+      <FieldError />
+    </TextField>
+
+    {/* Teaching Mode */}
+    <Select
+      name="teachingMode"
+      isRequired
+      className="w-full"
+      placeholder="Select Mode"
+    >
+      <Label className="text-gray-700 dark:text-gray-200">
+        Teaching Mode
+      </Label>
+
+      <Select.Trigger
+        className="
+          !rounded-none
+          bg-white
+          dark:bg-slate-900
+          text-black
+          dark:text-white
+          border
+          border-green-300
+          dark:border-slate-700
+        "
+      >
+        <Select.Value />
+        <Select.Indicator />
+      </Select.Trigger>
+
+      <Select.Popover className="!rounded-none bg-white dark:bg-slate-900 dark:text-white">
+        <ListBox>
+          <ListBox.Item id="Online">Online</ListBox.Item>
+          <ListBox.Item id="Offline">Offline</ListBox.Item>
+          <ListBox.Item id="Both">Both</ListBox.Item>
+        </ListBox>
+      </Select.Popover>
+    </Select>
+
+  </div>
+
+  {/* Button (UNCHANGED) */}
+  <motion.div
+    whileHover={{ scale: 1.03 }}
+    whileTap={{ scale: 0.95 }}
+    viewport={{ once: false, amount: 0.2 }}
+  >
+    <Button
+      onSubmit={onsubmit}
+      type="submit"
+      className=" w-full !rounded-none mt-8 border border-green-500  bg-[#53ef92]  hover:bg-green-500 px-5 py-2 transition-all text-slate-700"
+    >
+      Add Tutor
+    </Button>
+  </motion.div>
+
+</motion.form>
 
   </Card>
 

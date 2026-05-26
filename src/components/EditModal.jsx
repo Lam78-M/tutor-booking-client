@@ -1,65 +1,69 @@
 "use client";
+
+import { useStatStyles } from "@chakra-ui/react";
+import {Button, Input, Label, Modal, Surface, TextField, Select,FieldError, ListBox} from "@heroui/react";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
-import {Button, 
-      FieldError, 
-       Input, 
-       Label, 
-       Modal, 
-       Surface, 
-       TextField, 
-       Select, 
-       ListBox} from "@heroui/react";
-import { BiSolidEditAlt } from "react-icons/bi";
+const inputStyle = `
+  !rounded-none
+  bg-white
+  dark:bg-slate-900
+  text-black
+  dark:text-white
+  border
+  border-green-300
+  dark:border-slate-700
+`;
+export function EditModal({tutor, fetchTutors}) {
+  const [open, setOpen] = useState(false);
 
-export function EditModal() {
-     const onSubmit = async(e)=>{
+  const  {_id, tutorName, photo, subject, available, hourlyFee, sessionStart, institution, location, teachingMode, totalSlot} = tutor
+
+
+
+
+   const onSubmit = async(e)=>{
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     const addtutor = Object.fromEntries(formData.entries())
     console.log(addtutor)
 
   // calling api-------------
-//   const res = await fetch('http://localhost:5000/tutor',{
-//     method: "POST",
-//     headers: {
-//       'content-type' : 'application/json'
-//     },
-//     body: JSON.stringify(addtutor)
-//   })
+  const res = await fetch(`http://localhost:5000/add-tutor/${_id}`,{
+    method: "PATCH",
+    headers: {
+      'content-type' : 'application/json'
+    },
+    body: JSON.stringify(addtutor)
+  })
 
-//  const data = await res.json()
-//      if(res.ok){
-//       toast.success("your are successffull")
-//      }
+const data = await res.json()
+
+if(data.modifiedCount > 0){
+   toast.success("Updated Successfully")
+   await fetchTutors()
+   setOpen(false)
+}
   }
   return (
-    <Modal>
-       <button
-                           className= " border p-2 text-blue-600 hover:text-blue-800 text-lg hover:bg-green-200"
-                           title="Edit"
-                         >
-                         <BiSolidEditAlt />
-                         </button>
+    <Modal open={open} onOpenChange={setOpen}>
+      
+      <Button onPress={()=> setOpen(true)} className="px-3  text-sm rounded-md bg-blue-500 text-white hover:bg-blue-700 transition">
+        Edit
+      </Button>
+      
+
       <Modal.Backdrop>
         <Modal.Container placement="auto">
-          <Modal.Dialog className="sm:max-w-md">
+          <Modal.Dialog className="sm:max-w-3xl">
             <Modal.CloseTrigger />
-            <Modal.Header>
-              <Modal.Icon className="bg-accent-soft text-accent-soft-foreground">
-              
-              </Modal.Icon>
-              <Modal.Heading>Contact Us</Modal.Heading>
-              <p className="mt-1.5 text-sm leading-5 text-muted">
-                Fill out the form below and well get back to you. The modal adapts automatically
-                when the keyboard appears on mobile.
-              </p>
-            </Modal.Header>
+        
             <Modal.Body className="p-6">
               <Surface variant="default">
-                
-
-  <motion.form
+           
+ <motion.form
     onSubmit={onSubmit}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -67,8 +71,10 @@ export function EditModal() {
 viewport={{ once: false, amount: 0.2 }}
       className="p-10 space-y-2 !rounded-none"
     >
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <h1 className="text-center text-3xl mb-10 border-b-2 border-b-green-400">
+  Edit Your Tutor
+</h1>
+      <div className="max-w-3xl grid grid-cols-1 md:grid-cols-2 gap-8">
 
         {/* Tutor Name */}
         <motion.div
@@ -78,8 +84,8 @@ viewport={{ once: false, amount: 0.2 }}
       viewport={{ once: false, amount: 0.2 }}
           className="md:col-span-2"
         >
-          <TextField name="tutorName" isRequired>
-            <Label className="text-gray-700 dark:text-gray-200">
+          <TextField defaultValue={tutorName} name="tutorName" isRequired>
+            <Label  className="text-gray-700 dark:text-gray-200">
               Tutor Name
             </Label>
 
@@ -100,7 +106,7 @@ viewport={{ once: false, amount: 0.2 }}
          viewport={{ once: false, amount: 0.2 }}
           className="md:col-span-2"
         >
-          <TextField name="photo" isRequired>
+          <TextField defaultValue={photo} name="photo" isRequired>
             <Label className="text-gray-700 dark:text-gray-200">
               Photo URL
             </Label>
@@ -121,6 +127,7 @@ viewport={{ once: false, amount: 0.2 }}
           viewport={{ once: false, amount: 0.2 }}
         >
           <Select
+           defaultValue={subject}
             name="subject"
             isRequired
             className="w-full"
@@ -181,7 +188,9 @@ viewport={{ once: false, amount: 0.2 }}
           transition={{ type: "spring", stiffness: 200 }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <TextField name="hourlyFee" type="number" isRequired>
+          <TextField 
+          defaultValue={hourlyFee}
+           name="hourlyFee" type="number" isRequired>
 
             <Label className="text-gray-700 dark:text-gray-200">
               Hourly Fee
@@ -202,7 +211,7 @@ viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.2 }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <TextField name="availableDays" isRequired>
+          <TextField defaultValue={available} name="available" isRequired>
 
             <Label className="text-gray-700 dark:text-gray-200">
               Available Days
@@ -224,10 +233,10 @@ viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.2 }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <TextField name="timeSlot" isRequired>
+          <TextField defaultValue={sessionStart} name="sessionStart" isRequired>
 
             <Label className="text-gray-700 dark:text-gray-200">
-              Available Time Slot
+              Available 
             </Label>
 
             <Input
@@ -246,7 +255,7 @@ viewport={{ once: false, amount: 0.2 }}
           transition={{ type: "spring", stiffness: 200 }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <TextField name="totalSlot" type="number" isRequired>
+          <TextField defaultValue={totalSlot}  name="totalSlot" type="number" isRequired>
 
             <Label className="text-gray-700 dark:text-gray-200">
               Total Slot
@@ -268,10 +277,10 @@ viewport={{ once: false, amount: 0.2 }}
           transition={{ type: "spring", stiffness: 200 }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <TextField name="sessionStartDate" type="date" isRequired>
+          <TextField defaultValue={sessionStart} name="sessionStart" type="date" isRequired>
 
             <Label className="text-gray-700 dark:text-gray-200">
-              Session Start Date
+              Session Start 
             </Label>
 
             <Input
@@ -290,10 +299,10 @@ viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.2 }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <TextField name="institution" isRequired>
+          <TextField defaultValue={institution} name="institution" isRequired>
 
             <Label className="text-gray-700 dark:text-gray-200">
-              Institution & Experience
+              Institution 
             </Label>
 
            <Input
@@ -312,7 +321,7 @@ viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.2 }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <TextField name="location" isRequired>
+          <TextField defaultValue={location} name="location" isRequired>
 
             <Label className="text-gray-700 dark:text-gray-200">
               Location (Area/City)
@@ -334,6 +343,7 @@ viewport={{ once: false, amount: 0.2 }}
           viewport={{ once: false, amount: 0.2 }}
         >
           <Select
+            defaultValue={teachingMode}
             name="teachingMode"
             isRequired
             className="w-full"
@@ -385,23 +395,19 @@ viewport={{ once: false, amount: 0.2 }}
         whileTap={{ scale: 0.95 }}
         viewport={{ once: false, amount: 0.2 }}
       >
-        <Button
-          type="submit"
-       className=" w-full !rounded-none mt-8 border border-green-500  bg-[#53ef92]  hover:bg-green-500 px-5 py-2 transition-all text-slate-700"
-        >
-          Add Tutor
-        </Button>
+      
       </motion.div>
+       <Modal.Footer>
+    
+              <Button  type="submit" slot="close" className="border-green-500  bg-[#3b9c62]  hover:bg-green-500">Save</Button>
+            </Modal.Footer>
 
     </motion.form>
+
+
               </Surface>
             </Modal.Body>
-            <Modal.Footer>
-              <Button slot="close" variant="secondary">
-                Cancel
-              </Button>
-              <Button slot="close">Send Message</Button>
-            </Modal.Footer>
+         
           </Modal.Dialog>
         </Modal.Container>
       </Modal.Backdrop>

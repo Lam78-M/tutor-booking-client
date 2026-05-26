@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 
 
-const tutorAllPage = async () => {
+const ExtraCard = async () => {
   const res = await fetch("http://localhost:5000/tutor");
   const tutors = await res.json()
 
@@ -17,7 +17,7 @@ const tutorAllPage = async () => {
   </h1>
 
   <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-    {tutors.map((tutor) => (
+    {tutors.slice(0,6).map((tutor) => (
       <div
         key={tutor._id}
         className="p-5 w-full max-w-sm rounded-2xl shadow-lg bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 overflow-hidden hover:scale-105 transition-all duration-300"
@@ -53,7 +53,7 @@ const tutorAllPage = async () => {
           {/* Buttons */}
           <div className="flex gap-2 mt-3">
             <button className="w-full py-2 rounded-lg bg-green-700 text-white hover:bg-green-800 transition">
-             Book Tutor
+            Book Session
             </button>
 
            
@@ -69,4 +69,4 @@ const tutorAllPage = async () => {
 };
 
 
-export default tutorAllPage;
+export default ExtraCard;

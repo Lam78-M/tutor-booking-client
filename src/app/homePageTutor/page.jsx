@@ -2,17 +2,19 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { EditModal } from "@/components/EditModal";
+import { DeleteTutors } from "@/components/DeleteTutors";
 
 const HomePageTutor = () => {
   const [tutors, setTutors] = useState([]);
 
-  useEffect(() => {
-    const fetchTutors = async () => {
-      const res = await fetch("http://localhost:5000/tutor");
-      const data = await res.json();
-      setTutors(data);
-    };
+  const fetchTutors = async () => {
+    const res = await fetch("http://localhost:5000/add-tutor");
+    const data = await res.json();
+    setTutors(data);
+  };
 
+  useEffect(() => {
     fetchTutors();
   }, []);
 
@@ -32,10 +34,10 @@ const HomePageTutor = () => {
           {/* TABLE HEAD */}
           <thead className="bg-green-700 text-white">
             <tr>
-         
+  
               <th>Tutor Name</th>
               <th>Subject</th>
-              <th>Available</th>
+              <th>Available Time Slot</th>
               <th>Session Start</th>
               <th>Total Slot</th>
               <th>Fees</th>
@@ -80,7 +82,7 @@ const HomePageTutor = () => {
                   {tutor.totalSlot} 
                 </td>
                   <td className="text-green-600 font-semibold">
-                  {tutor.totalSlot} BDT
+                  {tutor.hourlyFee} BDT
                 </td>
 
                 {/* BUTTON */}
@@ -88,18 +90,10 @@ const HomePageTutor = () => {
   <div className="flex items-center gap-2">
 
     {/* EDIT BUTTON */}
-    <Link href={`/updateTutor/${tutor._id}`}>
-      <button className="px-3 py-1 text-sm rounded-md bg-blue-500 text-white hover:bg-blue-700 transition">
-        Edit
-      </button>
-    </Link>
 
+    <EditModal tutor={tutor} fetchTutors={fetchTutors} />
     {/* DELETE BUTTON */}
-    <button
-      className="px-3 py-1 text-sm rounded-md bg-red-500 text-white hover:bg-red-700 transition"
-    >
-      Delete
-    </button>
+  <DeleteTutors tutor={tutor}/>
 
   </div>
 </td>

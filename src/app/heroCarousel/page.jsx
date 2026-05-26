@@ -166,6 +166,7 @@ export default function HeroSlider() {
   </div>
 </SwiperSlide>
       </Swiper>
+      
     </div>
   );
 }
