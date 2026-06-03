@@ -8,25 +8,45 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
+import {Avatar} from "@heroui/react";
+import toast from "react-hot-toast";
 
 export default function Navbar() {
+
+      const { 
+        data: session, 
+    } = authClient.useSession() 
+  
+    console.log(session)
+
+    const user = session?.user
+    console.log(user)
+
+
+    
   const [open, setOpen] = useState(false);
 
   const pathname = usePathname();
 
   const { theme, setTheme } = useTheme();
 
-  const menu = [
-    { name: "Home", path: "/" },
-    { name: "Tutors", path: "/tutor" },
-    { name: "Add Tutor", path: "/add-tutor" },
-    { name: "My Tutors", path: "/my-tutors" },
-    { name: "My Booked Sessions", path: "/mybookedsessions" },
-  ];
+ const menu = user
+  ? [
+      { name: "Home", path: "/" },
+      { name: "Tutors", path: "/tutor" },
+      { name: "Add Tutor", path: "/add-tutor" },
+      { name: "My Tutors", path: "/my-tutors" },
+      { name: "My Booked Sessions", path: "/bookingsBook" },
+    ]
+  : [
+      { name: "Home", path: "/" },
+      { name: "Tutors", path: "/tutor" },
+    ];
 
   return (
     <nav className="bg-[#08223d] p-5 px-4 md:px-6  sticky top-0 z-50">
-      <div className="px-10 flex items-center justify-between">
+      <div className="flex items-center justify-between">
         
         {/* Logo */}
        <h1 className="text-2xl font-bold text-[#AAFFC7]">
@@ -66,50 +86,99 @@ export default function Navbar() {
           </ul>
 
           {/* Buttons + Theme */}
-          <div className="flex items-center gap-4">
-            
-            {/* Login */}
-         <Link href={'/login'}>
-            <Button
-              className="
-                bg-[#48d07e]
-                hover:bg-[#42d67d]
-                text-[#08223d]
-                font-semibold
-                px-4
-                py-2
-                rounded-md
-                transition-all
-                duration-300
-                hover:scale-105
-              "
-            >
-              Log In
-            </Button>
-         </Link>
+        <div className="flex items-center gap-3">
 
-            {/* Signup */}
-       <Link href={'/signup'}>
-            <Button
-              variant="bordered"
-              className="
-                border-2
-                border-[#48d07e]
-                text-[#53ef92]
-                hover:bg-[#48d07e]
-                hover:text-[#08223d]
-                font-semibold
-                px-4
-                py-2
-                rounded-md
-                transition-all
-                duration-300
-                hover:scale-105
-              "
-            >
-              Sign Up
-            </Button>
-       </Link>
+  {user ? (
+    <div className="flex items-center gap-3">
+
+      {/* User Avatar */}
+      <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
+        
+        <Avatar className="w-7 h-7 border-2 border-[#48d07e]">
+          <Avatar.Image alt={user?.name} src={user?.image} />
+          <Avatar.Fallback>
+            {user?.name?.charAt(0)}
+          </Avatar.Fallback>
+        </Avatar>
+
+        <span className="text-sm font-medium text-white hidden md:block">
+          {user?.name}
+        </span>
+      </div>
+
+      {/* Logout */}
+    <button
+  onClick={async () => {
+       toast.success("Logged out successfully. See you again! 👋");
+    await authClient.signOut();
+  }}
+ className="
+    flex
+    items-center
+    gap-2
+    px-4
+    py-2
+    rounded-full
+    bg-red-500
+    hover:bg-red-600
+    text-white
+    font-semibold
+    transition-all
+    duration-300
+    hover:scale-105
+    shadow-md
+  "
+>
+  Logout
+</button>
+    </div>
+  ) : (
+    <>
+      {/* Login */}
+      <Link href="/login">
+        <Button
+          className="
+            bg-[#48d07e]
+            hover:bg-[#3ecf78]
+            text-[#08223d]
+            font-semibold
+            px-5
+            py-2
+            rounded-lg
+            shadow-md
+            transition-all
+            duration-300
+            hover:scale-105
+          "
+        >
+          Log In
+        </Button>
+      </Link>
+
+      {/* Signup */}
+      <Link href="/signup">
+        <Button
+          variant="bordered"
+          className="
+            border-2
+            border-[#48d07e]
+            text-[#53ef92]
+            hover:bg-[#48d07e]
+            hover:text-[#08223d]
+            font-semibold
+            px-5
+            py-2
+            rounded-lg
+            transition-all
+            duration-300
+            hover:scale-105
+          "
+        >
+          Sign Up
+        </Button>
+      </Link>
+    </>
+  )}
 
             {/* Theme Toggle */}
             <button
@@ -248,40 +317,76 @@ export default function Navbar() {
               </ul>
 
               {/* Bottom Buttons */}
-              <div className="mt-auto flex flex-col gap-3 pt-6">
-                
-            <Link href={'/login'}>
-                <Button
-                  className="
-                    w-full
-                    bg-[#48d07e]
-                    text-[#08223d]
-                    font-semibold
-                    py-3
-                      hover:bg-[#51e48b]
-                  "
-                >
-                  Log In
-                </Button>
-            </Link>
+             <div className="mt-auto flex flex-col gap-3 pt-6">
+  {user ? (
+    <>
+      <div className="flex items-center gap-3 bg-white/10 p-3 rounded-xl">
+      
+ <Avatar className="w-7 h-7 border-2 border-[#48d07e]">
+          <Avatar.Image alt={user?.name} src={user?.image} />
+          <Avatar.Fallback>
+            {user?.name?.charAt(0)}
+          </Avatar.Fallback>
+        </Avatar>
+        <div>
+          <p className="text-white font-medium">
+            {user?.name}
+          </p>
 
-              
-              <Link href={'/signup'}>
-                <Button
-                  variant="bordered"
-                  className="
-                    w-full
-                    border-2
-                    border-[#48d07e]
-                    text-[#53ef92]
-                    hover:bg-[#48d07e]
-                    hover:text-[#08223d]
-                  "
-                >
-                  Sign Up
-                </Button>
-              </Link>
-              </div>
+          <p className="text-xs text-gray-300 truncate">
+            {user?.email}
+          </p>
+        </div>
+      </div>
+
+      <Button
+        onClick={async () => {
+             toast.success("Logged out successfully. See you again! 👋");
+          await authClient.signOut();
+          setOpen(false);
+        
+        }}
+      className="
+    flex
+    items-center
+    gap-2
+    px-4
+    py-2
+    rounded-full
+    bg-red-500
+    hover:bg-red-600
+    text-white
+    font-semibold
+    transition-all
+    duration-300
+    hover:scale-105
+    shadow-md
+  "
+      >
+        Logout
+      </Button>
+    </>
+  ) : (
+    <>
+      <Link href="/login">
+        <Button
+          className="w-full bg-[#48d07e] text-[#08223d] font-semibold py-3"
+        >
+          Log In
+        </Button>
+      </Link>
+
+      <Link href="/signup">
+        <Button
+          variant="bordered"
+          className="w-full border-2 border-[#48d07e] text-[#53ef92]"
+        >
+          Sign Up
+        </Button>
+      </Link>
+    </>
+  )}
+</div>
             </motion.div>
           </>
         )}
