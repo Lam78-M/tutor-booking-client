@@ -170,6 +170,14 @@ const TutorDetailsPage = async ({ params }) => {
                   {tutor.totalSlot}
                 </span>
               </div>
+
+               <div className="flex justify-between">
+                <span className="text-gray-500">Available Slots</span>
+                <span className="font-medium text-gray-900 dark:text-gray-100">
+                  {tutor.availableSlots}
+                </span>
+              </div>
+
               <div className="flex justify-between">
                 <span className="text-gray-500">Mode</span>
                 <span className="font-medium text-gray-900 dark:text-gray-100">
@@ -188,7 +196,7 @@ const TutorDetailsPage = async ({ params }) => {
 
          {/* booked session button */}
          
-             <SessionConfirm/>
+             <SessionConfirm tutor={tutor}/>
           
           </div>
 

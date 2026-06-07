@@ -1,7 +1,6 @@
-'use client'
+"use client";
+
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { EditModal } from "@/components/EditModal";
 import { DeleteTutors } from "@/components/DeleteTutors";
 
@@ -22,86 +21,80 @@ const HomePageTutor = () => {
     <div className="container mx-auto lg:px-20 mt-40 mb-20">
 
       {/* TITLE */}
-      <h1 className="text-4xl text-center font-semibold mb-10">
+      <h1 className="text-4xl text-center font-semibold mb-10 text-gray-900 dark:text-white">
         Teacher Panel
       </h1>
 
-      {/* TABLE */}
-      <div className="overflow-x-auto rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800">
+      {/* TABLE WRAPPER */}
+      <div className="overflow-x-auto rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0f172a]">
 
-        <table className="table w-full">
+        <table className="w-full text-sm text-left text-gray-900 dark:text-white">
 
           {/* TABLE HEAD */}
-          <thead className="bg-green-700 text-white">
+          <thead className="bg-green-700 dark:bg-green-800 text-white">
             <tr>
-  
-              <th>Tutor Name</th>
-              <th>Subject</th>
-              <th>Available Time Slot</th>
-              <th>Session Start</th>
-              <th>Total Slot</th>
-              <th>Fees</th>
-              <th>Action</th>
+              <th className="px-4 py-3">Tutor Name</th>
+              <th className="px-4 py-3">Subject</th>
+              <th className="px-4 py-3">Available Time Slot</th>
+              <th className="px-4 py-3">Session Start</th>
+              <th className="px-4 py-3">Total Slot</th>
+              <th className="px-4 py-3">Fees</th>
+              <th className="px-4 py-3">Action</th>
             </tr>
           </thead>
 
           {/* TABLE BODY */}
           <tbody>
-
-            {tutors.map((tutor) => (
-              <tr
-                key={tutor._id}
-                className="hover:bg-gray-100 dark:hover:bg-gray-900 transition"
-              >
-
-                {/* PHOTO */}
-              
-
-                {/* NAME */}
-                <td className="font-semibold">
-                  {tutor.tutorName}
+            {tutors.length === 0 ? (
+              <tr>
+                <td
+                  colSpan="7"
+                  className="text-center py-10 text-gray-500 dark:text-gray-400"
+                >
+                  No teacher found
                 </td>
-
-                {/* SUBJECT */}
-                <td>
-                  {tutor.subject}
-                </td>
-
-                {/* LOCATION */}
-                <td>
-                  {tutor.available}
-                </td>
-
-                {/* SESSION */}
-                <td>
-                  {tutor.sessionStart}
-                </td>
-
-                {/* FEES */}
-                <td className="text-green-600 font-semibold">
-                  {tutor.totalSlot} 
-                </td>
-                  <td className="text-green-600 font-semibold">
-                  {tutor.hourlyFee} BDT
-                </td>
-
-                {/* BUTTON */}
-              <td>
-  <div className="flex items-center gap-2">
-
-    {/* EDIT BUTTON */}
-
-    <EditModal tutor={tutor} fetchTutors={fetchTutors} />
-    {/* DELETE BUTTON */}
-  <DeleteTutors tutor={tutor}/>
-
-  </div>
-</td>
-
               </tr>
-            ))}
+            ) : (
+              tutors.map((tutor) => (
+                <tr
+                  key={tutor._id}
+                  className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-[#1e293b] transition"
+                >
+                  <td className="px-4 py-3 font-semibold text-gray-700 dark:text-gray-300">
+                    {tutor.tutorName}
+                  </td>
 
+                  <td className="px-4 py-3 text-gray-700 dark:text-gray-300">
+                    {tutor.subject}
+                  </td>
+
+                  <td className="px-4 py-3 text-gray-700 dark:text-gray-300">
+                    {tutor.available}
+                  </td>
+
+                  <td className="px-4 py-3 text-gray-700 dark:text-gray-300">
+                    {tutor.sessionStart}
+                  </td>
+
+                  <td className="px-4 py-3 text-green-600 dark:text-green-400 font-semibold">
+                    {tutor.totalSlot}
+                  </td>
+
+                  <td className="px-4 py-3 text-green-600 dark:text-green-400 font-semibold">
+                    {tutor.hourlyFee} BDT
+                  </td>
+
+                  <td className="px-4 py-3">
+                    <div className="flex items-center gap-2">
+                      <EditModal tutor={tutor} fetchTutors={fetchTutors} />
+                      <DeleteTutors tutor={tutor} />
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
+
         </table>
       </div>
     </div>

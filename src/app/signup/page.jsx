@@ -33,6 +33,12 @@ if(data){
 }
   };
 
+    const handleGoogleSignin = async ()=>{
+    await authClient.signIn.social({
+      provider: "google"
+    })
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-950 px-4">
 
@@ -120,6 +126,7 @@ if(data){
 
         {/* Google Button */}
         <button
+        onClick={handleGoogleSignin}
           type="button"
           className="w-full py-3 rounded-lg border border-green-600 dark:border-gray-700 flex items-center justify-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
         >

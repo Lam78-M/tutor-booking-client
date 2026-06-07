@@ -58,13 +58,13 @@ export function SessionConfirm({ tutor }) {
         Book Session
       </Button>
 
-      <Modal.Backdrop>
+      <Modal.Backdrop >
         <Modal.Container placement="center">
-          <Modal.Dialog className="sm:max-w-md rounded-md">
+          <Modal.Dialog className="sm:max-w-md rounded-md dark:bg-[#0f172a]">
             <Modal.CloseTrigger />
 
             <Modal.Header>
-              <Modal.Heading>Confirm your session</Modal.Heading>
+              <Modal.Heading  >Confirm your session</Modal.Heading>
             </Modal.Header>
 
             <Modal.Body className="p-6">
@@ -72,29 +72,39 @@ export function SessionConfirm({ tutor }) {
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
                   {/* Name */}
-                  <TextField name="name">
-                    <Label>Name</Label>
-                    <Input placeholder="Enter your name" />
-                  </TextField>
+               
+<TextField name="name">
+  <Label className="text-gray-500">Name</Label>
 
-                  {/* EMAIL (AUTO FROM SESSION) */}
-                  <TextField name="email">
-                    <Label>Email</Label>
-                    <Input
-                      value={session?.user?.email || ""}
-                      readOnly
-                    />
-                  </TextField>
+  <Input
+    placeholder="Enter your name"
+    className="bg-[#0f172a] text-white border border-gray-700 focus:border-green-500 focus:ring-1 focus:ring-green-500"
+  />
+</TextField>
 
+{/* EMAIL */}
+<TextField name="email">
+  <Label className="text-gray-500">Email</Label>
 
-                
-                  {/* PHONE */}
-                  <TextField name="phone">
-                    <Label>Phone</Label>
-                    <Input placeholder="Enter your phone number" />
-                  </TextField>
+  <Input
+    value={session?.user?.email || ""}
+    readOnly
+    className="bg-[#0f172a] text-gray-500 border border-gray-700"
+  />
+</TextField>
 
-                  <Button slot="close" type="submit" className="w-full">
+{/* PHONE */}
+<TextField name="phone">
+  <Label className="text-gray-500">Phone</Label>
+
+  <Input
+    placeholder="Enter your phone number"
+    className="bg-[#0f172a] text-white border border-gray-700 focus:border-green-500 focus:ring-1 focus:ring-green-500"
+  />
+</TextField>
+               
+
+                  <Button slot="close" type="submit" className="w-full py-3 bg-green-600 text-white rounded-lg ">
                     Confirm Session
                   </Button>
 

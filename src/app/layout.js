@@ -2,8 +2,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Providers from "./providers";
+
 import { Toaster } from "react-hot-toast";
+import NextThemeProvider from "@/providers/NextThemeProvider";
 
 
 
@@ -26,19 +27,15 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ` }
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable}`}
     >
-      <body className="" >
-        <Providers>
-          <Navbar />
-             
-          {/* MAIN CONTENT */}
-     
+      <body className="bg-background text-foreground" >
+   <NextThemeProvider>
+        <Navbar />
             {children}
           <Footer />
-        </Providers>
-
+   </NextThemeProvider>
         <Toaster position="top-right" />
       </body>
     </html>
