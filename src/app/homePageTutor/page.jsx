@@ -7,6 +7,10 @@ import { DeleteTutors } from "@/components/DeleteTutors";
 const HomePageTutor = () => {
   const [tutors, setTutors] = useState([]);
 
+  useEffect(() => {
+    document.title = "My tutor | Tutor App";
+  }, []);
+
   const fetchTutors = async () => {
     const res = await fetch("http://localhost:5000/add-tutor");
     const data = await res.json();
@@ -16,7 +20,6 @@ const HomePageTutor = () => {
   useEffect(() => {
     fetchTutors();
   }, []);
-
   return (
     <div className="container mx-auto lg:px-20 mt-40 mb-20">
 
@@ -43,7 +46,7 @@ const HomePageTutor = () => {
             </tr>
           </thead>
 
-          {/* TABLE BODY */}
+          {/* Table body-------------- */}
           <tbody>
             {tutors.length === 0 ? (
               <tr>

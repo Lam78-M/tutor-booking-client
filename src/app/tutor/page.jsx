@@ -11,6 +11,11 @@ const TutorAllPage = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
+  // 👇 TAB TITLE HERE
+  useEffect(() => {
+    document.title = "All Tutors | Tutor App";
+  }, []);
+
   useEffect(() => {
     const fetchTutors = async () => {
       const res = await fetch(
@@ -29,6 +34,7 @@ const TutorAllPage = () => {
     setStartDate("");
     setEndDate("");
   };
+
 
   return (
     <div className="container mx-auto lg:px-30 mt-40 mb-20">

@@ -43,6 +43,8 @@ export function SessionConfirm({ tutor }) {
   const data = await res.json();
      if (data?.success || data?.insertedId) {
       toast.success("Booking Confirmed 🎉");
+
+      window.location.reload()
     } else {
       toast.error("Booking Failed ❌");
     }

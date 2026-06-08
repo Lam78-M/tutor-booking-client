@@ -26,7 +26,7 @@ export default function HeroSlider() {
         loop={true}
         className="h-full"
       >
-        {/* Slide 1 */}
+        {/* Slide 1-------------- */}
         <SwiperSlide>
           <div
             className="h-full bg-cover bg-center relative"
@@ -34,10 +34,10 @@ export default function HeroSlider() {
               backgroundImage: "url('/tablewithcomputer.jpg')",
             }}
           >
-            {/* Dark Overlay */}
+            {/* Dark Overlay------------- */}
             <div className="absolute inset-0 bg-black/50"></div>
 
-            {/* Content */}
+            {/* Content------------------ */}
             <div className="relative z-10 h-full flex items-center justify-center text-center px-6">
               <div className="max-w-2xl">
                 <h1 className="text-4xl md:text-6xl font-bold text-white">
@@ -60,7 +60,7 @@ export default function HeroSlider() {
           </div>
         </SwiperSlide>
 
-        {/* Slide 2 */}
+        {/* Slide 2 -----------------*/}
         <SwiperSlide>
           <div
             className="h-full bg-cover bg-center relative"
@@ -90,7 +90,7 @@ export default function HeroSlider() {
           </div>
         </SwiperSlide>
 
-        {/* Slide 3 */}
+        {/* Slide 3---------------------- */}
         <SwiperSlide>
           <div
             className="h-full bg-cover bg-center relative"
@@ -150,7 +150,7 @@ export default function HeroSlider() {
               <p className="text-sm opacity-80">+ 1 week free access</p>
             </div>
 
-            {/* Button */}
+            {/* Button-------------------- */}
            
 <Link href={'/tutor'}>
 

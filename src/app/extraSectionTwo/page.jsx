@@ -9,13 +9,13 @@ export default function ExtraSectionTwo() {
       {/* Background Image */}
       <div className="absolute mt-20 inset-0 bg-[url('/blob-scene-haikei.svg')] bg-cover bg-center "></div>
 
-      {/* Overlay */}
+
       <div className="absolute inset-0 "></div>
 
-      {/* Content */}
+
       <div className="relative max-w-6xl mx-auto">
 
-        {/* Heading */}
+        {/* Heading------------------ */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-[#2572bf]">
             What Our Students <span className="text-black">Say</span>

@@ -1,8 +1,18 @@
 "use client";
-import { motion } from "framer-motion";
-import { TextField,Label, Select,ListBox,Input, FieldError,Button, Card } from "@heroui/react";
-import toast from "react-hot-toast";
 
+import { motion } from "framer-motion";
+import {
+  TextField,
+  Label,
+  Select,
+  ListBox,
+  Input,
+  FieldError,
+  Button,
+  Card,
+} from "@heroui/react";
+import toast from "react-hot-toast";
+import { useEffect } from "react";
 
 const inputStyle = `
   !rounded-none
@@ -14,30 +24,37 @@ const inputStyle = `
   border-green-300
   dark:border-slate-700
 `;
+
 export default function AddTutor() {
 
-  // submition link--------------
-  const onSubmit = async(e)=>{
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const addtutor = Object.fromEntries(formData.entries())
-    console.log(addtutor)
+  // use tab title here
+  useEffect(() => {
+    document.title = "Add Tutor | Tutor App";
+  }, []);
 
-  // calling api-------------
-  const res = await fetch('http://localhost:5000/add-tutor',{
-    method: "POST",
-    headers: {
-      'content-type' : 'application/json'
-    },
-    body: JSON.stringify(addtutor)
-  })
+   // submition link--------------
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const addtutor = Object.fromEntries(formData.entries());
 
- const data = await res.json()
-     if(res.ok){
-      toast.success("your are successffull")
-     }
-  }
+    console.log(addtutor);
 
+    // calling api-------------
+    const res = await fetch("http://localhost:5000/add-tutor", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addtutor),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      toast.success("You are successful");
+    }
+  };
 
   return (
 <div className=" p-5 max-w-3xl   xl mx-auto shadow-xl mt-10 mb-10 border bg-white dark:bg-[#0f172a] transition-colors duration-300">
@@ -70,7 +87,7 @@ export default function AddTutor() {
 
   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-    {/* Tutor Name */}
+    {/* Tutor Name---------- */}
     <TextField name="tutorName" isRequired>
       <Label className="text-gray-700 dark:text-gray-200">
         Tutor Name
@@ -80,7 +97,7 @@ export default function AddTutor() {
       <FieldError />
     </TextField>
 
-    {/* Photo URL */}
+    {/* Photo URL------------- */}
     <TextField name="photo" isRequired>
       <Label className="text-gray-700 dark:text-gray-200">
         Photo URL
@@ -90,7 +107,7 @@ export default function AddTutor() {
       <FieldError />
     </TextField>
 
-    {/* Subject */}
+    {/* Subject ------------------*/}
     <Select
       name="subject"
       isRequired
@@ -130,7 +147,7 @@ export default function AddTutor() {
       </Select.Popover>
     </Select>
 
-    {/* Available (FIXED FIELD NAME ONLY) */}
+    {/* Available time------------*/}
     <TextField name="available" isRequired>
       <Label className="text-gray-700 dark:text-gray-200">
         Available Days & Time
@@ -143,7 +160,7 @@ export default function AddTutor() {
       <FieldError />
     </TextField>
 
-    {/* Hourly Fee */}
+    {/* Hourly Fee ------------------- */}
     <TextField name="hourlyFee" type="number" isRequired>
       <Label className="text-gray-700 dark:text-gray-200">
         Hourly Fee
@@ -153,7 +170,7 @@ export default function AddTutor() {
       <FieldError />
     </TextField>
 
-    {/* Total Slot */}
+    {/* Total Slot ------------------ */}
     <TextField name="totalSlot" type="number" isRequired>
       <Label className="text-gray-700 dark:text-gray-200">
         Total Slot
@@ -163,7 +180,7 @@ export default function AddTutor() {
       <FieldError />
     </TextField>
 
-    {/* Session Start Date */}
+    {/* Session Start Date -----------------*/}
     <TextField name="sessionStart" type="date" isRequired>
       <Label className="text-gray-700 dark:text-gray-200">
         Session Start
@@ -173,7 +190,7 @@ export default function AddTutor() {
       <FieldError />
     </TextField>
 
-    {/* Institution */}
+    {/* Institution --------------------*/}
     <TextField name="institution" isRequired>
       <Label className="text-gray-700 dark:text-gray-200">
         Institution
@@ -186,7 +203,7 @@ export default function AddTutor() {
       <FieldError />
     </TextField>
 
-    {/* Location */}
+    {/* Location ------------------*/}
     <TextField name="location" isRequired>
       <Label className="text-gray-700 dark:text-gray-200">
         Location (Area/City)
@@ -196,7 +213,7 @@ export default function AddTutor() {
       <FieldError />
     </TextField>
 
-    {/* Teaching Mode */}
+    {/* Teaching Mode--------------------- */}
     <Select
       name="teachingMode"
       isRequired
@@ -234,7 +251,7 @@ export default function AddTutor() {
 
   </div>
 
-  {/* Button (UNCHANGED) */}
+  {/* Button-------------------- */}
   <motion.div
     whileHover={{ scale: 1.03 }}
     whileTap={{ scale: 0.95 }}

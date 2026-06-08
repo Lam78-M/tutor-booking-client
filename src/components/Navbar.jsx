@@ -26,6 +26,24 @@ export default function Navbar() {
     setMounted(true);
   }, []);
 
+  // 👇 TAB TITLE AUTO UPDATE HERE
+  useEffect(() => {
+    const titles = {
+      "/": "Home",
+      "/signin": "Login",
+      "/signup": "Sign Up",
+      "/dashboard": "Dashboard",
+      "/bookingsBook": "Bookings",
+      "/add-tutor": "Add Tutor",
+      "/tutors": "All Tutors",
+      "/profile": "Profile",
+    };
+
+    const pageTitle = titles[pathname] || "Tutor App";
+
+    document.title = `${pageTitle} | Tutor App`;
+  }, [pathname]);
+
   // ✅ Stable menu (prevents hydration mismatch)
   const menu = useMemo(() => {
     return user

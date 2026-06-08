@@ -22,7 +22,7 @@ const ExtraCard = async () => {
         key={tutor._id}
         className="p-5 w-full max-w-sm rounded-2xl shadow-lg bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 overflow-hidden hover:scale-105 transition-all duration-300"
       >
-        {/* Image */}
+        {/* Image-------------- */}
         <Image
           src={tutor.photo}
           alt={tutor.tutorName}
@@ -31,7 +31,7 @@ const ExtraCard = async () => {
           className="w-full h-56 object-cover rounded-xl"
         />
 
-        {/* Content */}
+        {/* Content------------------- */}
         <div className="mt-4 space-y-2 text-left">
           <h1 className="text-sm text-gray-600">{tutor.location}</h1>
 
@@ -50,7 +50,7 @@ const ExtraCard = async () => {
             Fees : {tutor.hourlyFee} BDT / hour
           </p>
 
-          {/* Buttons */}
+          {/* Buttons---------------- */}
           <div className="flex gap-2 mt-3">
             <button className="w-full py-2 rounded-lg bg-green-700 text-white hover:bg-green-800 transition">
             Book Session

@@ -1,44 +1,49 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
+import { useEffect } from "react";
 
-  function SigninPage() {
+function SigninPage() {
 
-  const onsubmit=async(e) => {
+
+  useEffect(() => {
+    document.title = "Login | Tutor App";
+  }, []);
+
+  const onsubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries());
-    console.log(user)
-    // এখানে API call দিবি future e
-    const{ data, error} = await authClient.signIn.email({
-      email : user.email,
-      password: user.password,        
-    })
-    console.log({data, error})
-  if (error) {
-  toast.error(error.message);
-  return;
-}
 
-if (data) {
-  toast.success("Account created successfully");
-}
-if(data){
-  redirect('/')
-}
+    console.log(user);
+
+    const { data, error } = await authClient.signIn.email({
+      email: user.email,
+      password: user.password,
+    });
+
+    console.log({ data, error });
+
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+
+    if (data) {
+      toast.success("Login successful");
+      redirect("/");
+    }
   };
- 
-    const handleGoogleSignin = async ()=>{
-    await authClient.signIn.social({
-      provider: "google"
-    })
-  }
 
+  const handleGoogleSignin = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-950 px-4">
 
@@ -56,9 +61,6 @@ if(data){
             Login to get started
           </p>
         </div>
-
-        {/* Name */}
-      
 
         {/* Email */}
         <div className="space-y-1">
@@ -106,14 +108,12 @@ if(data){
           Login
         </button>
 
-        {/* Divider */}
         <div className="flex items-center gap-3">
           <div className="h-px bg-gray-300 dark:bg-gray-700 flex-1"></div>
           <span className="text-xs text-gray-500">OR</span>
           <div className="h-px bg-gray-300 dark:bg-gray-700 flex-1"></div>
         </div>
 
-        {/* Google Button */}
         <button 
         onClick={handleGoogleSignin}
           type="button"
@@ -122,10 +122,6 @@ if(data){
           <FcGoogle className="text-xl" />
           Continue with Google
         </button>
-
-        {/* Login Link */}
-     
-
       </form>
     </div>
   );

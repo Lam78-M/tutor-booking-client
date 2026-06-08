@@ -1,23 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function BookingsBook() {
   const [bookings, setBookings] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/bookings")
-      .then((res) => res.json())
-      .then((data) => {
-        const updated = data.map((b) => ({
-          ...b,
-          status: b.status || "Confirmed",
-          isCancelled: false,
-        }));
+ useEffect(() => {
+  fetch("http://localhost:5000/bookings")
+    .then((res) => res.json())
+    .then((data) => {
+      const updated = data.map((b) => ({
+        ...b,
+        status: b.status || "Confirmed",
+        isCancelled: false,
+      }));
 
-        setBookings(updated);
-      });
-  }, []);
+      setBookings(updated);
+    });
+
+  document.title = "My booked tutor";
+}, []);
 
   const handleCancel = (id) => {
     const updated = bookings.map((b) =>
@@ -27,6 +30,7 @@ export default function BookingsBook() {
     );
 
     setBookings(updated);
+    toast.success("Booking cancelled successfully!");
   };
 
   return (
@@ -74,7 +78,7 @@ export default function BookingsBook() {
                   {b.studentEmail}
                 </td>
 
-                {/* STATUS */}
+                {/* STATUS--------------------- */}
                 <td className="px-4 py-3">
                   {b.status === "Confirmed" ? (
                     <span className="bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 text-xs px-2 py-1 rounded-md">
@@ -87,7 +91,7 @@ export default function BookingsBook() {
                   )}
                 </td>
 
-                {/* CANCEL BUTTON */}
+                {/* Cancel button----------------------- */}
                 <td className="px-4 py-3 text-center">
                   <button
                     onClick={() => handleCancel(b._id)}

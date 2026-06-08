@@ -1,43 +1,51 @@
 "use client";
+
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
+import { useEffect } from "react";
 
-  function SignupPage() {
-    
-  const onsubmit=async(e) => {
+function SignupPage() {
+
+  useEffect(() => {
+    document.title = "Sign Up | Tutor App";
+  }, []);
+
+  const onsubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries());
-    console.log(user)
-    // এখানে API call দিবি future e
-    const{ data, error} = await authClient.signUp.email({
-      email : user.email,
+
+    console.log(user);
+
+    const { data, error } = await authClient.signUp.email({
+      email: user.email,
       password: user.password,
       name: user.name,
-      image: user.image              
-    })
-    console.log({data, error})
-  if (error) {
-  toast.error(error.message);
-  return;
-}
+      image: user.image,
+    });
 
-if (data) {
-  toast.success("Account created successfully");
-}
-if(data){
-  redirect('/login')
-}
+    console.log({ data, error });
+
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+
+    if (data) {
+      toast.success("Account created successfully");
+      redirect("/login");
+    }
   };
 
-    const handleGoogleSignin = async ()=>{
+  const handleGoogleSignin = async () => {
     await authClient.signIn.social({
-      provider: "google"
-    })
-  }
+      provider: "google",
+    });
+  };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-950 px-4">
@@ -105,6 +113,8 @@ if(data){
             name="password"
             type="password"
             placeholder="Enter your password"
+             pattern="(?=.*[a-z])(?=.*[A-Z]).{6,}"
+    title="Must have at least 6 characters, one uppercase and one lowercase letter"
             className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent outline-none focus:border-[#67C090]"
           />
         </div>
