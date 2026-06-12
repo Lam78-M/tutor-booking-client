@@ -36,13 +36,14 @@ export default function AddTutor() {
    // submition link--------------
   const onSubmit = async (e) => {
     e.preventDefault();
-    const session = await authClient.getSession();
-    const token = session?.data?.token;
     const formData = new FormData(e.currentTarget);
     const addtutor = Object.fromEntries(formData.entries());
 
     console.log(addtutor);
 
+
+    const {data: tokenData} = await authClient.token()
+    console.log(tokenData)
     // calling api-------------
  try {
   const res = await fetch(
@@ -51,7 +52,7 @@ export default function AddTutor() {
       method: "POST",
       headers: {
         "content-type": "application/json",
-         authorization: `Bearer ${token}`,
+         authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(addtutor),
     }
