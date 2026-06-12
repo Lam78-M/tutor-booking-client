@@ -46,10 +46,7 @@ export default function AddTutor() {
     `${process.env.NEXT_PUBLIC_SERVER_URL}/add-tutor`,
     {
       method: "POST",
-      headers: {
-        "content-type": "application/json",
-         authorization: `Bearer ${token}`,
-      },
+    
       body: JSON.stringify(addtutor),
     }
   );
