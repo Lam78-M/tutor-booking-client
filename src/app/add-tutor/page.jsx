@@ -42,22 +42,22 @@ export default function AddTutor() {
 
     // calling api-------------
  try {
-const res = await fetch(
-  `${process.env.NEXT_PUBLIC_SERVER_URL}/add-tutor`,
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(addtutor),
-  }
-);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/add-tutor`,
+    {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+         authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(addtutor),
+    }
+  );
 
   const data = await res.json();
 
   if (res.ok) {
     toast.success("Successfully Added");
-    e.target.reset();
   }
 } catch (error) {
   console.error(error);
