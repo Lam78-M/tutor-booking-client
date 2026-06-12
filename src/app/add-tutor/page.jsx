@@ -48,7 +48,7 @@ export default function AddTutor() {
       method: "POST",
       headers: {
         "content-type": "application/json",
-         Authorization: `Bearer ${token}`,
+         authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(addtutor),
     }
