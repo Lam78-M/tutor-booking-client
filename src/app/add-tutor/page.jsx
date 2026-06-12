@@ -13,6 +13,7 @@ import {
 } from "@heroui/react";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
+import { authClient } from "@/lib/auth-client";
 
 const inputStyle = `
   !rounded-none
@@ -35,6 +36,8 @@ export default function AddTutor() {
    // submition link--------------
   const onSubmit = async (e) => {
     e.preventDefault();
+    const session = await authClient.getSession();
+    const token = session?.data?.token;
     const formData = new FormData(e.currentTarget);
     const addtutor = Object.fromEntries(formData.entries());
 
