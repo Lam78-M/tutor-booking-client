@@ -14,8 +14,13 @@ const HomePageTutor = () => {
 
   const fetchTutors = async () => {
 
-      const { data: tokenData } = await authClient.token();
-        console.log(tokenData)
+const { data: tokenData } = await authClient.token();
+
+if (!tokenData?.token) {
+  console.log("No token found");
+  return;
+}
+
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/add-tutor`,{
         headers: {
         Authorization: `Bearer ${tokenData?.token}`,
