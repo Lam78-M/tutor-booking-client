@@ -1,4 +1,6 @@
 import { SessionConfirm } from "@/components/SessionConfirm";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import Image from "next/image";
 import { FaMapMarkerAlt, FaCheckCircle } from "react-icons/fa";
 import {
@@ -13,8 +15,16 @@ import {
 const TutorDetailsPage = async ({ params }) => {
   const { id } = await params;
 
-  const res = await fetch(`http://localhost:5000/tutor/${id}`, {
-    cache: "no-store",
+  const {token} = await auth.api.getToken({
+    headers: await headers()
+  })
+
+  console.log(token)
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutor/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`
+    }
   });
 
   const tutor = await res.json();

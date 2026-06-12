@@ -1,23 +1,35 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-export default function BookingsBook() {
+export default function BookingsBook () {
   const [bookings, setBookings] = useState([]);
 
- useEffect(() => {
-  fetch("http://localhost:5000/bookings")
-    .then((res) => res.json())
-    .then((data) => {
-      const updated = data.map((b) => ({
-        ...b,
-        status: b.status || "Confirmed",
-        isCancelled: false,
-      }));
+useEffect(() => {
+  const getBookings = async () => {
+    const { data: tokenData } = await authClient.token();
+    console.log(tokenData)
 
-      setBookings(updated);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`, {
+      headers: {
+        Authorization: `Bearer ${tokenData?.token}`,
+      },
     });
+
+    const data = await res.json();
+
+    const updated = data.map((b) => ({
+      ...b,
+      status: b.status || "Confirmed",
+      isCancelled: false,
+    }));
+
+    setBookings(updated);
+  };
+
+  getBookings();
 
   document.title = "My booked tutor";
 }, []);

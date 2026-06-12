@@ -10,7 +10,7 @@ export function DeleteTutors({tutor}) {
     const {tutorName, _id}  = tutor
 
    const handleDelete = async ()=>{
-    const dataDelete = await fetch(`http://localhost:5000/add-tutor/${_id}`,
+    const dataDelete = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/add-tutor/${_id}`,
         {
             method: 'DELETE',
             headers:{

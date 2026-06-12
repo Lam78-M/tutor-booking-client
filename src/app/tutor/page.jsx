@@ -11,15 +11,10 @@ const TutorAllPage = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  // 👇 TAB TITLE HERE
-  useEffect(() => {
-    document.title = "All Tutors | Tutor App";
-  }, []);
-
   useEffect(() => {
     const fetchTutors = async () => {
       const res = await fetch(
-        `http://localhost:5000/tutor?search=${search}&startDate=${startDate}&endDate=${endDate}`
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/tutor?search=${search}&startDate=${startDate}&endDate=${endDate}`
       );
 
       const data = await res.json();
@@ -34,7 +29,6 @@ const TutorAllPage = () => {
     setStartDate("");
     setEndDate("");
   };
-
 
   return (
     <div className="container mx-auto lg:px-30 mt-40 mb-20">
@@ -147,7 +141,7 @@ const TutorAllPage = () => {
               </p>
 
               <h2 className="text-gray-800 dark:text-gray-300">
-                Session Start : {tutor.sessionStart}
+                Session Start : {new Date (tutor.sessionStart).toLocaleDateString}
               </h2>
 
               <p className="font-semibold text-violet-700 dark:text-violet-400 flex items-center gap-2">

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { EditModal } from "@/components/EditModal";
 import { DeleteTutors } from "@/components/DeleteTutors";
+import { authClient } from "@/lib/auth-client";
 
 const HomePageTutor = () => {
   const [tutors, setTutors] = useState([]);
@@ -12,7 +13,14 @@ const HomePageTutor = () => {
   }, []);
 
   const fetchTutors = async () => {
-    const res = await fetch("http://localhost:5000/add-tutor");
+
+      const { data: tokenData } = await authClient.token();
+        console.log(tokenData)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/add-tutor`,{
+        headers: {
+        Authorization: `Bearer ${tokenData?.token}`,
+      },
+    });      
     const data = await res.json();
     setTutors(data);
   };

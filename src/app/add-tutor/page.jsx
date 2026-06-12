@@ -41,19 +41,27 @@ export default function AddTutor() {
     console.log(addtutor);
 
     // calling api-------------
-    const res = await fetch("http://localhost:5000/add-tutor", {
+ try {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/add-tutor`,
+    {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(addtutor),
-    });
-
-    const data = await res.json();
-
-    if (res.ok) {
-      toast.success("You are successful");
     }
+  );
+
+  const data = await res.json();
+
+  if (res.ok) {
+    toast.success("Successfully Added");
+  }
+} catch (error) {
+  console.error(error);
+  toast.error("Server Error");
+}
   };
 
   return (
@@ -258,7 +266,7 @@ export default function AddTutor() {
     viewport={{ once: false, amount: 0.2 }}
   >
     <Button
-      onSubmit={onsubmit}
+      onSubmit={onSubmit}
       type="submit"
       className=" w-full !rounded-none mt-8 border border-green-500  bg-[#53ef92]  hover:bg-green-500 px-5 py-2 transition-all text-slate-700"
     >

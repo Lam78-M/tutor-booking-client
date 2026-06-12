@@ -31,7 +31,7 @@ export function EditModal({tutor, fetchTutors}) {
     console.log(addtutor)
 
   // calling api-------------
-  const res = await fetch(`http://localhost:5000/add-tutor/${_id}`,{
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/add-tutor/${_id}`,{
     method: "PATCH",
     headers: {
       'content-type' : 'application/json'
