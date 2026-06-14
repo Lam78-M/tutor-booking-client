@@ -15,11 +15,11 @@ import {
 const TutorDetailsPage = async ({ params }) => {
   const { id } = await params;
 
-  const {token} = await auth.api.getToken({
+  const { token } = await auth.api.getToken({
     headers: await headers()
-  })
+  });
 
-  console.log(token)
+  console.log(token);
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutor/${id}`, {
     headers: {
@@ -35,6 +35,11 @@ const TutorDetailsPage = async ({ params }) => {
     .join("")
     .slice(0, 2)
     .toUpperCase();
+
+  // 🌟 DATE CHECKING LOGIC HERE
+  const currentDate = new Date();
+  const sessionStartDate = new Date(tutor.sessionStart);
+  const isExpired = sessionStartDate < currentDate;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
@@ -181,7 +186,7 @@ const TutorDetailsPage = async ({ params }) => {
                 </span>
               </div>
 
-               <div className="flex justify-between">
+              <div className="flex justify-between">
                 <span className="text-gray-500">Available Slots</span>
                 <span className="font-medium text-gray-900 dark:text-gray-100">
                   {tutor.availableSlots}
@@ -204,10 +209,20 @@ const TutorDetailsPage = async ({ params }) => {
 
             <hr className="my-4 border-gray-100 dark:border-gray-800" />
 
-         {/* booked session button */}
-         
-             <SessionConfirm tutor={tutor}/>
-          
+            {/* 🌟 CONDITIONALLY RENDERED BUTTON SECTION */}
+            {isExpired ? (
+              <div className="w-full text-center p-3 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 rounded-xl">
+                <p className="text-sm font-semibold text-red-600 dark:text-red-400">
+                  Booking Closed
+                </p>
+                <p className="text-[11px] text-red-400 dark:text-red-500/80 mt-0.5">
+                  The deadline ({tutor.sessionStart}) has passed.
+                </p>
+              </div>
+            ) : (
+              <SessionConfirm tutor={tutor} />
+            )}
+
           </div>
 
           {/* Tutor mini profile */}

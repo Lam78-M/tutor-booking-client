@@ -2,6 +2,7 @@ import { AArrowDown } from 'lucide-react';
 import React from 'react';
 import { FaMoneyBillWave } from 'react-icons/fa';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 
@@ -12,8 +13,8 @@ const ExtraCard = async () => {
   return (
     <div>
       <div className="container mx-auto lg:px-30 mt-40 mb-20">
-  <h1 className="text-4xl text-center font-semibold mb-10">
-    Teacher Panel
+  <h1 className="text-4xl text-center font-semibold mb-15">
+    Our Tutors
   </h1>
 
   <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -52,9 +53,11 @@ const ExtraCard = async () => {
 
           {/* Buttons */}
           <div className="flex gap-2 mt-3">
-            <button className="w-full py-2 rounded-lg bg-green-700 text-white hover:bg-green-800 transition">
+            <Link
+            href={'/login'}
+             className="w-full text-center font-bold py-2 rounded-lg bg-green-700 text-white hover:bg-green-800 transition">
             Book Session
-            </button>
+            </Link>
 
            
           </div>

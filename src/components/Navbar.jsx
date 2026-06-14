@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import LinkNext from "next/link";
 import { HiOutlineMenu, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Loader2 } from "lucide-react"; 
 import { Button } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 import { Avatar } from "@heroui/react";
@@ -17,6 +17,7 @@ export default function Navbar() {
   const user = session?.user;
 
   const [open, setOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false); 
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
 
@@ -60,6 +61,24 @@ export default function Navbar() {
         ];
   }, [user]);
 
+  // লগআউট হ্যান্ডলার ফাংশন (পেজ রিলোডসহ)
+  const handleLogout = async () => {
+    try {
+      setIsLoggingOut(true);
+      await authClient.signOut();
+      toast.success("Logged out successfully 👋");
+      setOpen(false); 
+
+      // 👇 লগআউট শেষে হোমপেজে পাঠিয়ে পুরো পেজ রিলোড করবে
+      window.location.href = "/"; 
+    } catch (error) {
+      console.error("Logout error:", error);
+      toast.error("Something went wrong during logout.");
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
+
   return (
     <nav className="bg-[#08223d] p-5 px-4 md:px-6 sticky top-0 z-50">
       <div className="flex items-center justify-between">
@@ -75,7 +94,7 @@ export default function Navbar() {
           <ul className="flex items-center justify-center w-full gap-2">
             {menu.map((item) => (
               <li key={item.path} className="relative">
-                <Link
+                <LinkNext
                   href={item.path}
                   className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
                     pathname === item.path
@@ -84,7 +103,7 @@ export default function Navbar() {
                   }`}
                 >
                   {item.name}
-                </Link>
+                </LinkNext>
 
                 {pathname === item.path && (
                   <motion.div
@@ -115,32 +134,38 @@ export default function Navbar() {
                   </span>
                 </div>
 
+                {/* ডেস্কটপ লগআউট বাটন */}
                 <button
-                  onClick={async () => {
-                    toast.success("Logged out successfully 👋");
-                    await authClient.signOut();
-                  }}
-                  className="px-4 py-2 rounded-full bg-red-500 hover:bg-red-600 text-white font-semibold transition-all duration-300 hover:scale-105"
+                  onClick={handleLogout}
+                  disabled={isLoggingOut}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-red-500 hover:bg-red-600 text-white font-semibold transition-all duration-300 hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  Logout
+                  {isLoggingOut ? (
+                    <>
+                      <Loader2 className="animate-spin" size={16} />
+                      <span>Logging out...</span>
+                    </>
+                  ) : (
+                    "Logout"
+                  )}
                 </button>
               </div>
             ) : (
               <>
-                <Link href="/login">
+                <LinkNext href="/login">
                   <Button className="bg-[#48d07e] hover:bg-[#3ecf78] text-[#08223d] font-semibold px-5 py-2 rounded-lg shadow-md transition-all duration-300 hover:scale-105">
                     Log In
                   </Button>
-                </Link>
+                </LinkNext>
 
-                <Link href="/signup">
+                <LinkNext href="/signup">
                   <Button
                     variant="bordered"
                     className="border-2 border-[#48d07e] text-[#53ef92] hover:bg-[#48d07e] hover:text-[#08223d] font-semibold px-5 py-2 rounded-lg transition-all duration-300 hover:scale-105"
                   >
                     Sign Up
                   </Button>
-                </Link>
+                </LinkNext>
               </>
             )}
 
@@ -161,7 +186,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile */}
+        {/* Mobile Toggle */}
         <div className="flex items-center gap-3 lg:hidden">
 
           <button
@@ -213,7 +238,7 @@ export default function Navbar() {
               <ul className="flex flex-col gap-3">
                 {menu.map((item) => (
                   <li key={item.path}>
-                    <Link
+                    <LinkNext
                       href={item.path}
                       onClick={() => setOpen(false)}
                       className={`block px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
@@ -223,7 +248,7 @@ export default function Navbar() {
                       }`}
                     >
                       {item.name}
-                    </Link>
+                    </LinkNext>
                   </li>
                 ))}
               </ul>
@@ -247,33 +272,38 @@ export default function Navbar() {
                       </div>
                     </div>
 
+                    {/* মোবাইল লগআউট বাটন */}
                     <Button
-                      onClick={async () => {
-                        toast.success("Logged out 👋");
-                        await authClient.signOut();
-                        setOpen(false);
-                      }}
-                      className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold"
+                      onClick={handleLogout}
+                      disabled={isLoggingOut}
+                      className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold flex items-center justify-center gap-2 disabled:opacity-70"
                     >
-                      Logout
+                      {isLoggingOut ? (
+                        <>
+                          <Loader2 className="animate-spin" size={16} />
+                          <span>Logging out...</span>
+                        </>
+                      ) : (
+                        "Logout"
+                      )}
                     </Button>
                   </>
                 ) : (
                   <>
-                    <Link href="/login">
+                    <LinkNext href="/login">
                       <Button className="w-full bg-[#48d07e] text-[#08223d] font-semibold py-3">
                         Log In
                       </Button>
-                    </Link>
+                    </LinkNext>
 
-                    <Link href="/signup">
+                    <LinkNext href="/signup">
                       <Button
                         variant="bordered"
                         className="w-full border-2 border-[#48d07e] text-[#53ef92]"
                       >
                         Sign Up
                       </Button>
-                    </Link>
+                    </LinkNext>
                   </>
                 )}
               </div>

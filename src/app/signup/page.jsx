@@ -27,7 +27,7 @@ function SignupPage() {
       image: user.image,
     });
 
-    console.log({ data, error });
+    console.log({ data, error });    
 
     if (error) {
       toast.error(error.message);

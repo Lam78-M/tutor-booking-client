@@ -13,12 +13,15 @@ const TutorAllPage = () => {
 
   useEffect(() => {
     const fetchTutors = async () => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/tutor?search=${search}&startDate=${startDate}&endDate=${endDate}`
-      );
-
-      const data = await res.json();
-      setTutors(data);
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/tutor?search=${search}&startDate=${startDate}&endDate=${endDate}`
+        );
+        const data = await res.json();
+        setTutors(data);
+      } catch (error) {
+        console.error("Error fetching tutors:", error);
+      }
     };
 
     fetchTutors();
@@ -32,21 +35,21 @@ const TutorAllPage = () => {
 
   return (
     <div className="container mx-auto lg:px-30 mt-40 mb-20">
-
       {/* Title */}
-      <h1 className="text-4xl text-center font-semibold mb-10 text-gray-900 dark:text-white">
+      <h1 className="text-5xl text-center font-semibold mb-3 text-gray-900 dark:text-white">
         Teacher Panel
+      </h1>
+      <h1 className="text-lg text-center mb-20 text-gray-900 dark:text-white">
+        Choose your future tutor
       </h1>
 
       {/* FILTER SECTION */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
-
         {/* Search */}
         <div>
           <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
             Search Tutor
           </label>
-
           <input
             type="text"
             placeholder="Search tutor by name..."
@@ -63,7 +66,6 @@ const TutorAllPage = () => {
           <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
             Start Date
           </label>
-
           <input
             type="date"
             value={startDate}
@@ -79,7 +81,6 @@ const TutorAllPage = () => {
           <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
             End Date
           </label>
-
           <input
             type="date"
             value={endDate}
@@ -105,7 +106,6 @@ const TutorAllPage = () => {
 
       {/* CARDS */}
       <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-
         {tutors.map((tutor) => (
           <div
             key={tutor._id}
@@ -114,7 +114,6 @@ const TutorAllPage = () => {
             border border-gray-200 dark:border-gray-800
             overflow-hidden hover:scale-105 transition-all duration-300"
           >
-
             <Image
               src={tutor.photo}
               alt={tutor.tutorName}
@@ -124,7 +123,6 @@ const TutorAllPage = () => {
             />
 
             <div className="mt-4 space-y-2 text-left">
-
               <h1 className="text-sm text-gray-600 dark:text-gray-400">
                 {tutor.location}
               </h1>
@@ -140,8 +138,9 @@ const TutorAllPage = () => {
                 Subject : {tutor.subject}
               </p>
 
+              {/* ফিক্সড করা হয়েছে: .toLocaleDateString() ব্র্যাকেট দেওয়া হয়েছে */}
               <h2 className="text-gray-800 dark:text-gray-300">
-                Session Start : {new Date (tutor.sessionStart).toLocaleDateString}
+                Session Start : {new Date(tutor.sessionStart).toLocaleDateString()}
               </h2>
 
               <p className="font-semibold text-violet-700 dark:text-violet-400 flex items-center gap-2">
@@ -150,13 +149,11 @@ const TutorAllPage = () => {
               </p>
 
               <div className="flex gap-2 mt-3">
-
                 <Link href={`/tutor/${tutor._id}`} className="w-full">
                   <button className="w-full py-2 rounded-lg bg-green-700 text-white hover:bg-green-800 transition">
                     Book Tutor
                   </button>
                 </Link>
-
               </div>
             </div>
           </div>

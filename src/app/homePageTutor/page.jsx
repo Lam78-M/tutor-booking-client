@@ -38,7 +38,7 @@ if (!tokenData?.token) {
 
       {/* TITLE */}
       <h1 className="text-4xl text-center font-semibold mb-10 text-gray-900 dark:text-white">
-        Teacher Panel
+        My added tutors
       </h1>
 
       {/* TABLE WRAPPER */}
