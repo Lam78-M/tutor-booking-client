@@ -1,11 +1,10 @@
 "use client";
 
-import { useStatStyles } from "@chakra-ui/react";
 import { Button, Input, Label, Modal, Surface, TextField, Select, FieldError, ListBox } from "@heroui/react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { authClient } from "@/lib/auth-client"; // 🌟 টোকেন এর জন্য ইম্পোর্ট করা হলো
+import { authClient } from "@/lib/auth-client"; 
 
 const inputStyle = `
   !rounded-none
@@ -29,7 +28,7 @@ export function EditModal({ tutor, fetchTutors }) {
     const addtutor = Object.fromEntries(formData.entries());
 
     try {
-      // 🌟 authClient থেকে লেটেস্ট টোকেন নিয়ে আসা হচ্ছে
+    
       const { data: tokenData } = await authClient.token();
 
       // calling api-------------
@@ -37,7 +36,7 @@ export function EditModal({ tutor, fetchTutors }) {
         method: "PATCH",
         headers: {
           'content-type': 'application/json',
-          'authorization': `Bearer ${tokenData?.token}` // 🌟 টোকেন হেডার্সে পাস করা হলো
+          'authorization': `Bearer ${tokenData?.token}` 
         },
         body: JSON.stringify(addtutor)
       });
@@ -46,8 +45,8 @@ export function EditModal({ tutor, fetchTutors }) {
 
       if (data.modifiedCount > 0) {
         toast.success("Updated Successfully");
-        await fetchTutors(); // ডাটা রিফ্রেশ করার জন্য
-        setOpen(false); // মোডাল বন্ধ করার জন্য
+        await fetchTutors(); 
+        setOpen(false); 
       } else {
         toast.error("No changes made or failed to update");
       }
@@ -168,7 +167,7 @@ export function EditModal({ tutor, fetchTutors }) {
                       </TextField>
                     </motion.div>
 
-                    {/* Available Days & Time 🌟 (Name Fixed) */}
+               
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       transition={{ duration: 0.2 }}
@@ -204,7 +203,7 @@ export function EditModal({ tutor, fetchTutors }) {
                       transition={{ type: "spring", stiffness: 200 }}
                       viewport={{ once: false, amount: 0.2 }}
                     >
-                      {/* 🌟 database থেকে আসা ডেট ফরমেট (YYYY-MM-DD) করতে হবে যদি এডিটে ডেট না দেখায় */}
+                
                       <TextField defaultValue={sessionStart ? new Date(sessionStart).toISOString().split('T')[0] : ""} name="sessionStart" type="date" isRequired>
                         <Label className="text-gray-700 dark:text-gray-200">
                           Session Start 
@@ -276,7 +275,7 @@ export function EditModal({ tutor, fetchTutors }) {
 
                   </div>
 
-                  {/* 🌟 Modal.Footer এর ভেতর থেকে slot="close" সরিয়ে দেওয়া হয়েছে */}
+               
                   <Modal.Footer>
                     <Button slot="close" type="submit" className="border-green-500 bg-[#3b9c62] text-white hover:bg-green-500 font-medium px-6 py-2">
                       Save Changes
