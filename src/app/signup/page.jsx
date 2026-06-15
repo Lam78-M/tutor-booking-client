@@ -6,8 +6,6 @@ import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { useEffect } from "react";
-import { FieldError, Label, TextField } from "@heroui/react";
-import { Input } from "postcss";
 
 function SignupPage() {
 
@@ -94,18 +92,18 @@ function SignupPage() {
         </div>
 
         {/* Photo URL */}
-   {/* 🌟 ফাইল আপলোডের বদলে সরাসরি ইমেজ ইউআরএল (Link) ইনপুট */}
-<TextField name="photo" isRequired>
-  <Label className="text-gray-700 dark:text-gray-200">
-    Tutor Photo URL
-  </Label>
-  <Input 
-    type="url" 
-    placeholder="https://i.ibb.co/.../image.jpg" 
-    className={inputStyle} 
-  />
-  <FieldError />
-</TextField>
+        <div className="space-y-1">
+          <label className="text-sm text-gray-600 dark:text-gray-300">
+            Photo URL
+          </label>
+          <input
+            name="photo"
+            type="text"
+            placeholder="Paste your photo URL"
+            className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent outline-none focus:border-[#67C090]"
+          />
+        </div>
+
         {/* Password */}
         <div className="space-y-1">
           <label className="text-sm text-gray-600 dark:text-gray-300">

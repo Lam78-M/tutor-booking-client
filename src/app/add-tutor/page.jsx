@@ -15,6 +15,7 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { authClient } from "@/lib/auth-client";
 
+// ইনপুট ফিল্ডগুলোর কমন স্টাইল
 const inputStyle = `
   !rounded-none
   bg-white
@@ -34,10 +35,11 @@ export default function AddTutor() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    
     const formData = new FormData(e.currentTarget);
+    const tutorData = Object.fromEntries(formData.entries());
 
     const { data: tokenData } = await authClient.token();
-    console.log(tokenData);
 
     try {
       const res = await fetch(
@@ -45,10 +47,10 @@ export default function AddTutor() {
         {
           method: "POST",
           headers: {
-        
+            "Content-Type": "application/json", 
             authorization: `Bearer ${tokenData?.token}`,
           },
-          body: formData, 
+          body: JSON.stringify(tutorData), 
         }
       );
 
@@ -57,6 +59,8 @@ export default function AddTutor() {
       if (res.ok) {
         toast.success("Successfully Added");
         e.currentTarget.reset();
+      } else {
+        toast.error(data.message || "Failed to add tutor");
       }
     } catch (error) {
       console.error(error);
@@ -65,7 +69,9 @@ export default function AddTutor() {
   };
 
   return (
-    <div className="p-5 max-w-3xl mx-auto shadow-xl mt-10 mb-10 border bg-white dark:bg-[#0f172a] transition-colors duration-300">
+    <div className="p-5 max-w-3xl mx-auto shadow-xl mt-10 mb-10 border bg-white dark:bg-[#0f172a] transition-colors duration-300 px-4">
+      
+      {/* Top Header */}
       <div className="text-center pt-10">
         <span className="bg-[#AAFFC7] text-[#124170] px-4 py-2 rounded-full text-sm font-medium">
           Tutor Booking
@@ -89,7 +95,7 @@ export default function AddTutor() {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             
-            {/* Tutor Name---------- */}
+            {/* Tutor Name ---------- */}
             <TextField name="tutorName" isRequired>
               <Label className="text-gray-700 dark:text-gray-200">
                 Tutor Name
@@ -97,20 +103,20 @@ export default function AddTutor() {
               <Input placeholder="John Doe" className={inputStyle} />
               <FieldError />
             </TextField>
-   
-{/*  Dynamic Photo Upload Implementation */}
-{/* 🌟 ফাইল আপলোডের বদলে সরাসরি ইমেজ ইউআরএল (Link) ইনপুট */}
-<TextField name="photo" isRequired>
-  <Label className="text-gray-700 dark:text-gray-200">
-    Tutor Photo URL
-  </Label>
-  <Input 
-    type="url" 
-    placeholder="https://i.ibb.co/.../image.jpg" 
-    className={inputStyle} 
-  />
-  <FieldError />
-</TextField>
+
+            {/* Tutor Photo URL (সেই আগের সিম্পল ফিল্ড) ---------- */}
+            <TextField name="photo" isRequired>
+              <Label className="text-gray-700 dark:text-gray-200">
+                Tutor Photo URL
+              </Label>
+              <Input 
+                type="url" 
+                placeholder="https://i.ibb.co/.../image.jpg" 
+                className={inputStyle} 
+              />
+              <FieldError />
+            </TextField>
+
             {/* Subject ------------------*/}
             <Select
               name="subject"
@@ -138,7 +144,7 @@ export default function AddTutor() {
               </Select.Popover>
             </Select>
 
-            {/* Available time------------*/}
+            {/* Available time ------------*/}
             <TextField name="available" isRequired>
               <Label className="text-gray-700 dark:text-gray-200">
                 Available Days & Time
@@ -192,7 +198,7 @@ export default function AddTutor() {
               <FieldError />
             </TextField>
 
-            {/* Teaching Mode--------------------- */}
+            {/* Teaching Mode --------------------- */}
             <Select
               name="teachingMode"
               isRequired
@@ -217,7 +223,7 @@ export default function AddTutor() {
 
           </div>
 
-          {/* Button-------------------- */}
+          {/* Submit Button -------------------- */}
           <motion.div
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.95 }}
