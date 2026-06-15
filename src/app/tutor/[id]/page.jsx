@@ -28,7 +28,6 @@ const TutorDetailsPage = async ({ params }) => {
   });
 
   const tutor = await res.json();
-
   const initials = tutor.tutorName
     ?.split(" ")
     .map((n) => n[0])
@@ -36,7 +35,7 @@ const TutorDetailsPage = async ({ params }) => {
     .slice(0, 2)
     .toUpperCase();
 
-  // 🌟 DATE CHECKING LOGIC HERE
+  // Data check logic impliment
   const currentDate = new Date();
   const sessionStartDate = new Date(tutor.sessionStart);
   const isExpired = sessionStartDate < currentDate;
@@ -60,7 +59,6 @@ const TutorDetailsPage = async ({ params }) => {
         )}
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
         <div className="absolute top-4 left-4">
           <span className="flex items-center gap-1 bg-white/15 backdrop-blur-sm border border-white/30 text-white text-xs px-3 py-1.5 rounded-full">
             <MdOutlineSchool className="text-sm" />
@@ -80,13 +78,13 @@ const TutorDetailsPage = async ({ params }) => {
         </div>
       </div>
 
-      {/* Body */}
+      {/* Body------------ */}
       <div className="grid grid-cols-1 md:grid-cols-[1fr_280px] gap-4 mt-4">
 
-        {/* Left */}
+        {/* Left-------------- */}
         <div className="flex flex-col gap-4">
 
-          {/* Subjects */}
+          {/* Subjects---------------- */}
           <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-5">
             <p className="text-[11px] font-medium uppercase tracking-widest text-gray-400 mb-3">
               Subject
@@ -103,7 +101,7 @@ const TutorDetailsPage = async ({ params }) => {
             </div>
           </div>
 
-          {/* Session info */}
+          {/* Session info--------------- */}
           <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-5">
             <p className="text-[11px] font-medium uppercase tracking-widest text-gray-400 mb-3">
               Session Info
@@ -148,7 +146,7 @@ const TutorDetailsPage = async ({ params }) => {
             ))}
           </div>
 
-          {/* Slots */}
+          {/* Slots--------------- */}
           <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-5">
             <p className="text-[11px] font-medium uppercase tracking-widest text-gray-400 mb-3">
               Available Slots
@@ -163,10 +161,10 @@ const TutorDetailsPage = async ({ params }) => {
           </div>
         </div>
 
-        {/* Right sidebar */}
+        {/* Right sidebar--------------- */}
         <div className="flex flex-col gap-4">
 
-          {/* Fee + booking */}
+          {/* Fee and booking--------------- */}
           <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-5">
             <p className="text-xs text-gray-400 mb-1">Hourly rate</p>
             <div className="flex items-baseline gap-1">
@@ -209,7 +207,7 @@ const TutorDetailsPage = async ({ params }) => {
 
             <hr className="my-4 border-gray-100 dark:border-gray-800" />
 
-            {/* 🌟 CONDITIONALLY RENDERED BUTTON SECTION */}
+            {/*  Conditionally rendered button when date overed */}
             {isExpired ? (
               <div className="w-full text-center p-3 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 rounded-xl">
                 <p className="text-sm font-semibold text-red-600 dark:text-red-400">
@@ -225,7 +223,7 @@ const TutorDetailsPage = async ({ params }) => {
 
           </div>
 
-          {/* Tutor mini profile */}
+          {/* Tutors mini profile-------------- */}
           <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center text-green-700 dark:text-green-300 font-semibold text-sm flex-shrink-0">

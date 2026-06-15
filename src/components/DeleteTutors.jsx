@@ -20,9 +20,7 @@ export function DeleteTutors({tutor}) {
         const data = await dataDelete.json()
         permanentRedirect('/add-tutor')
         console.log(data)
-   }
-
-
+           }
   return (
     <AlertDialog>
       <Button variant="danger">Delete</Button>

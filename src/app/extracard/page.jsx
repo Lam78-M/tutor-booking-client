@@ -1,20 +1,17 @@
-import { AArrowDown } from 'lucide-react';
 import React from 'react';
 import { FaMoneyBillWave } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
-// ⚠️ তোমার প্রোজেক্টের সঠিক পাথ অনুযায়ী ব্যাকএন্ডের auth ইম্পোর্ট করো
 import { auth } from '@/lib/auth'; 
 import { headers } from 'next/headers';
 
 const ExtraCard = async () => {
-  // ১. এপিআই থেকে টিউটর ডেটা ফেচ করা
+
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutor`);
   const tutors = await res.json();
 
-  // ২. Better-Auth ব্যবহার করে সার্ভার সাইড সেশন চেক করা
   const session = await auth.api.getSession({
-    headers: await headers() // Next.js-এর হেডার পাস করা যাতে কুকি থেকে সেশন পায়
+    headers: await headers() 
   });
 
   return (

@@ -36,17 +36,17 @@ if (!tokenData?.token) {
   return (
     <div className="container mx-auto lg:px-20 mt-40 mb-20">
 
-      {/* TITLE */}
+      {/* Title ------------------ */}
       <h1 className="text-4xl text-center font-semibold mb-10 text-gray-900 dark:text-white">
         My added tutors
       </h1>
 
-      {/* TABLE WRAPPER */}
+      {/* Table wrapper------------- */}
       <div className="overflow-x-auto rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0f172a]">
 
         <table className="w-full text-sm text-left text-gray-900 dark:text-white">
 
-          {/* TABLE HEAD */}
+          {/* table head ------------ */}
           <thead className="bg-green-700 dark:bg-green-800 text-white">
             <tr>
               <th className="px-4 py-3">Tutor Name</th>

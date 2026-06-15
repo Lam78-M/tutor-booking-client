@@ -35,7 +35,7 @@ const TutorAllPage = () => {
 
   return (
     <div className="container mx-auto lg:px-30 mt-40 mb-20">
-      {/* Title */}
+      {/* Title ------ */}
       <h1 className="text-5xl text-center font-semibold mb-3 text-gray-900 dark:text-white">
         Teacher Panel
       </h1>
@@ -43,9 +43,9 @@ const TutorAllPage = () => {
         Choose your future tutor
       </h1>
 
-      {/* FILTER SECTION */}
+      {/* Filter section------- */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
-        {/* Search */}
+        {/* Search impliment ------ */}
         <div>
           <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
             Search Tutor
@@ -61,7 +61,7 @@ const TutorAllPage = () => {
           />
         </div>
 
-        {/* Start Date */}
+        {/* Start date ------ */}
         <div>
           <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
             Start Date
@@ -76,7 +76,7 @@ const TutorAllPage = () => {
           />
         </div>
 
-        {/* End Date */}
+        {/* End date ------ */}
         <div>
           <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
             End Date
@@ -91,7 +91,7 @@ const TutorAllPage = () => {
           />
         </div>
 
-        {/* Reset */}
+        {/* Reset ------ */}
         <div className="flex items-end">
           <button
             onClick={handleReset}
@@ -104,7 +104,7 @@ const TutorAllPage = () => {
         </div>
       </div>
 
-      {/* CARDS */}
+      {/* Cards ------ */}
       <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {tutors.map((tutor) => (
           <div
@@ -138,7 +138,6 @@ const TutorAllPage = () => {
                 Subject : {tutor.subject}
               </p>
 
-              {/* ফিক্সড করা হয়েছে: .toLocaleDateString() ব্র্যাকেট দেওয়া হয়েছে */}
               <h2 className="text-gray-800 dark:text-gray-300">
                 Session Start : {new Date(tutor.sessionStart).toLocaleDateString()}
               </h2>
@@ -159,8 +158,7 @@ const TutorAllPage = () => {
           </div>
         ))}
       </div>
-
-      {/* EMPTY STATE */}
+      {/* Empty state ------ */}
       {tutors.length === 0 && (
         <div className="text-center mt-10 text-gray-500 dark:text-gray-400">
           No tutor found.

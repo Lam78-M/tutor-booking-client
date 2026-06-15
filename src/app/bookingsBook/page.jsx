@@ -10,9 +10,8 @@ export default function BookingsBook() {
   useEffect(() => {
     const getBookings = async () => {
       try {
-        // ১. Auth client theke user ba session details niye asha
         const { data: sessionData } = await authClient.getSession(); 
-        const currentUserEmail = sessionData?.user?.email; // Login kora user er email
+        const currentUserEmail = sessionData?.user?.email; // Login kora user er email use korbo
 
         const { data: tokenData } = await authClient.token();
         console.log(tokenData);
@@ -25,16 +24,14 @@ export default function BookingsBook() {
 
         const data = await res.json();
 
-        // 🌟 ২. FILTER LOGIC: Shudhu login kora user-er bookings filter kora
-        // (Tomar database field jodi 'studentEmail' hoy, tobe tar sathe match korbe)
+        //  filter logic: Shudhu login kora user-er bookings filter korar jonno
+        
         const loggedInUserBookings = data.filter(
           (b) => b.studentEmail === currentUserEmail
         );
 
-        // localStorage থেকে আগে ক্যানসেল করা আইডিগুলোর লিস্ট নিয়ে আসা
         const savedCancelledIds = JSON.parse(localStorage.getItem("cancelledBookings")) || [];
-
-        // Filtered data-r upor map chalano
+        
         const updated = loggedInUserBookings.map((b) => {
           const isLocallyCancelled = savedCancelledIds.includes(b._id);
 
@@ -80,7 +77,7 @@ export default function BookingsBook() {
 
       <div className="overflow-x-auto border rounded-xl bg-white dark:bg-[#0f172a] shadow-sm">
         {bookings.length === 0 ? (
-          // 🌟 Empty State Handler
+        
           <div className="text-center py-12 text-gray-500 dark:text-gray-400">
             You havent booked any sessions yet.
           </div>

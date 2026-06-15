@@ -122,28 +122,28 @@ export default function HeroSlider() {
         <SwiperSlide>
   <div className="h-full flex items-center justify-center relative bg-gradient-to-r from-[#67C090] to-[#2f7a58]">
 
-    {/* soft glow blobs */}
+    {/* soft glow blobs-------------------- */}
     <div className="absolute w-[400px] h-[400px] bg-white/20 blur-3xl rounded-full top-[-100px] left-[-100px]"></div>
     <div className="absolute w-[300px] h-[300px] bg-white/10 blur-3xl rounded-full bottom-[-80px] right-[-80px]"></div>
 
-    {/* main card */}
+    {/* main card----------------- */}
     <div className="relative z-10 w-full px-6">
       <div className="max-w-4xl mx-auto rounded-2xl p-[2px] bg-white/20 shadow-2xl">
-        {/* glossy inner layer */}
+        {/* glossy inner layer--------------- */}
         <div className="rounded-2xl bg-white/10 backdrop-blur-xl border border-white/30 p-8 relative overflow-hidden">
 
-          {/* light reflection effect */}
+          {/* light reflection effect-------- */}
           <div className="absolute top-[-40%] left-[-20%] w-[200%] h-[200%] rotate-12 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
 
-            {/* Left */}
+            {/* Left----------------- */}
             <h2 className="text-center lg:text-left text-4xl font-bold text-white leading-tight">
               Up to <br />
               <span className="text-white/90">23% Off</span>
             </h2>
 
-            {/* Middle */}
+            {/* Middle ----------------*/}
             <div className="text-center text-white/90">
               <p className="text-sm opacity-80">Limited Time Offer</p>
               <div className="text-xl font-bold text-white">MediQueue</div>

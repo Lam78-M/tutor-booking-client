@@ -7,12 +7,9 @@ const ExtraSectionOne = () => {
 
 
 
-<section
-  className="py-20 px-6 mt-40 mb-40 bg"
->
-  <div className="max-w-6xl mx-auto 
+<section className="py-20 px-6 mt-40 mb-40 bg">
   
-  ">
+  <div className="max-w-6xl mx-auto ">
 
     {/* Heading start ------------- */}
     <motion.div

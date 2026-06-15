@@ -45,10 +45,10 @@ export default function AddTutor() {
         {
           method: "POST",
           headers: {
-            // Content-Type bad dewa hoyeche jeno multi-part upload kaj kore
+        
             authorization: `Bearer ${tokenData?.token}`,
           },
-          body: formData, // dynamic data collection send
+          body: formData, 
         }
       );
 
@@ -97,10 +97,8 @@ export default function AddTutor() {
               <Input placeholder="John Doe" className={inputStyle} />
               <FieldError />
             </TextField>
-
-            {/* 🌟 Dynamic Photo Upload Implementation */}
-           
-{/* 🌟 Dynamic Photo Upload Implementation */}
+   
+{/*  Dynamic Photo Upload Implementation */}
 <div className="flex flex-col gap-2">
   <Label className="text-gray-700 dark:text-gray-200 font-medium text-sm">
     Upload Tutor Photo

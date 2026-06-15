@@ -54,7 +54,6 @@ if(data.modifiedCount > 0){
         Edit
       </Button>
       
-
       <Modal.Backdrop>
         <Modal.Container placement="auto">
           <Modal.Dialog className="sm:max-w-3xl">
@@ -76,7 +75,7 @@ viewport={{ once: false, amount: 0.2 }}
 </h1>
       <div className="max-w-3xl grid grid-cols-1 md:grid-cols-2 gap-8">
 
-        {/* Tutor Name */}
+        {/* Tutor Name-------- */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -98,7 +97,7 @@ viewport={{ once: false, amount: 0.2 }}
           </TextField>
         </motion.div>
 
-        {/* Photo URL */}
+        {/* Photo url-------------- */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -115,7 +114,6 @@ viewport={{ once: false, amount: 0.2 }}
   placeholder="John Doe"
   className={inputStyle}
 />
-
             <FieldError />
           </TextField>
         </motion.div>
@@ -223,11 +221,10 @@ viewport={{ once: false, amount: 0.2 }}
 />
 
             <FieldError />
-
           </TextField>
         </motion.div>
 
-        {/* Time Slot */}
+        {/* Time Slot----------------- */}
         <motion.div
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.2 }}
@@ -267,7 +264,6 @@ viewport={{ once: false, amount: 0.2 }}
 />
 
             <FieldError />
-
           </TextField>
         </motion.div>
 
@@ -404,10 +400,8 @@ viewport={{ once: false, amount: 0.2 }}
 
     </motion.form>
 
-
               </Surface>
             </Modal.Body>
-         
           </Modal.Dialog>
         </Modal.Container>
       </Modal.Backdrop>

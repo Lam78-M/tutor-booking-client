@@ -33,7 +33,6 @@ export function SessionConfirm({ tutor }) {
 
     console.log(bookingData);
 
-    // এখানে API call দিবা
       const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`, {
     method: "POST",
     headers: {
@@ -47,13 +46,12 @@ const data = await res.json();
 
 console.log("Saved:", data);
 
-// 🔥 SLOT / ERROR handling (IMPORTANT)
 if (!data?.success) {
   toast.error(data?.message || "Booking Failed ❌");
   return;
 }
 
-// ✅ SUCCESS case
+//  Success case ---------
 if (data?.insertedId) {
   toast.success("Booking Confirmed 🎉");
   window.location.reload();
@@ -82,7 +80,7 @@ if (data?.insertedId) {
               <Surface>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
-                  {/* Name */}
+                  {/* Name---------- */}
                
 <TextField name="name">
   <Label className="text-gray-500">Name</Label>
@@ -93,7 +91,7 @@ if (data?.insertedId) {
   />
 </TextField>
 
-{/* EMAIL */}
+{/* Email --------- */}
 <TextField name="email">
   <Label className="text-gray-500">Email</Label>
 
@@ -104,7 +102,7 @@ if (data?.insertedId) {
   />
 </TextField>
 
-{/* PHONE */}
+{/* Phone ------------ */}
 <TextField name="phone">
   <Label className="text-gray-500">Phone</Label>
 

@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { useEffect } from "react";
+import { Label } from "@heroui/react";
 
 function SignupPage() {
 
@@ -92,17 +93,35 @@ function SignupPage() {
         </div>
 
         {/* Photo URL */}
-        <div className="space-y-1">
-          <label className="text-sm text-gray-600 dark:text-gray-300">
-            Photo URL
-          </label>
-          <input
-            name="photo"
-            type="text"
-            placeholder="Paste your photo URL"
-            className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent outline-none focus:border-[#67C090]"
-          />
+    <div className="flex flex-col gap-2">
+      <Label className="text-gray-700 dark:text-gray-200 font-medium text-sm">
+        Upload Tutor Photo
+      </Label>
+      
+      <div className="relative group border-2 border-dashed border-green-300 dark:border-slate-700 hover:border-green-500 transition-colors bg-white dark:bg-slate-900 h-28 flex flex-col items-center justify-center cursor-pointer">
+        
+        {/* Real Hidden Input layout matrix */}
+        <input 
+          type="file"
+          name="photo"
+          isRequired
+          accept="image/*"
+          className="absolute inset-0 opacity-0 w-full h-full cursor-pointer z-10"
+        />
+    
+        {/* Custom UI setup (User eita dekhbe) */}
+        <div className="text-center pointer-events-none flex flex-col items-center gap-1">
+          <span className="text-2xl text-green-500 group-hover:scale-110 transition-transform">
+            📷
+          </span>
+          <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+            Click to upload photo
+          </p>
+         
         </div>
+    
+      </div>
+    </div>
 
         {/* Password */}
         <div className="space-y-1">

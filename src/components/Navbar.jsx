@@ -27,7 +27,6 @@ export default function Navbar() {
     setMounted(true);
   }, []);
 
-  // 👇 TAB TITLE AUTO UPDATE HERE
   useEffect(() => {
     const titles = {
       "/": "Home",
@@ -45,7 +44,6 @@ export default function Navbar() {
     document.title = `${pageTitle} | Tutor App`;
   }, [pathname]);
 
-  // ✅ Stable menu (prevents hydration mismatch)
   const menu = useMemo(() => {
     return user
       ? [
@@ -61,7 +59,6 @@ export default function Navbar() {
         ];
   }, [user]);
 
-  // লগআউট হ্যান্ডলার ফাংশন (পেজ রিলোডসহ)
   const handleLogout = async () => {
     try {
       setIsLoggingOut(true);
@@ -69,7 +66,6 @@ export default function Navbar() {
       toast.success("Logged out successfully 👋");
       setOpen(false); 
 
-      // 👇 লগআউট শেষে হোমপেজে পাঠিয়ে পুরো পেজ রিলোড করবে
       window.location.href = "/"; 
     } catch (error) {
       console.error("Logout error:", error);
@@ -83,12 +79,12 @@ export default function Navbar() {
     <nav className="bg-[#08223d] p-5 px-4 md:px-6 sticky top-0 z-50">
       <div className="flex items-center justify-between">
 
-        {/* Logo */}
+        {/* Logo---- */}
         <h1 className="text-2xl font-bold text-[#AAFFC7]">
           Medi<span className="text-[#67C090]">Queue</span>
         </h1>
 
-        {/* Desktop Menu */}
+        {/* Desktop menu----- */}
         <div className="hidden lg:flex items-center justify-center w-full ml-20 gap-8">
 
           <ul className="flex items-center justify-center w-full gap-2">
@@ -115,7 +111,7 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* Right Side */}
+          {/* Right Side------------------ */}
           <div className="flex items-center gap-3">
 
             {user ? (
@@ -134,7 +130,6 @@ export default function Navbar() {
                   </span>
                 </div>
 
-                {/* ডেস্কটপ লগআউট বাটন */}
                 <button
                   onClick={handleLogout}
                   disabled={isLoggingOut}
@@ -169,7 +164,7 @@ export default function Navbar() {
               </>
             )}
 
-            {/* Theme Toggle */}
+            {/* Theme toggle --------- */}
             <button
               onClick={() =>
                 setTheme(theme === "dark" ? "light" : "dark")
@@ -186,7 +181,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Toggle */}
+        {/* Mobile toggle ----------- */}
         <div className="flex items-center gap-3 lg:hidden">
 
           <button
@@ -272,7 +267,6 @@ export default function Navbar() {
                       </div>
                     </div>
 
-                    {/* মোবাইল লগআউট বাটন */}
                     <Button
                       onClick={handleLogout}
                       disabled={isLoggingOut}

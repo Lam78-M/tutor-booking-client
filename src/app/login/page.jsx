@@ -33,12 +33,7 @@ function SigninPage() {
 
       if (data) {
         toast.success("Login successful");
-
-        // Tutor page এ পাঠাবে
-        router.push("/tutor");
-
-        // Session refresh করবে
-        router.refresh();
+        window.location.href = "/tutor";
       }
     } catch (err) {
       console.error(err);
@@ -48,8 +43,10 @@ function SigninPage() {
 
   const handleGoogleSignin = async () => {
     try {
+      
       await authClient.signIn.social({
         provider: "google",
+        callbackURL: "/tutor" 
       });
     } catch (error) {
       console.error(error);
@@ -59,23 +56,18 @@ function SigninPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-950 px-4">
+     
       <form
         onSubmit={onsubmit}
         className="w-full max-w-md bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-xl space-y-5"
       >
         <div className="text-center space-y-1">
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-            Login
-          </h1>
-          <p className="text-sm text-gray-500">
-            Login to get started
-          </p>
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Login</h1>
+          <p className="text-sm text-gray-500">Login to get started</p>
         </div>
 
         <div className="space-y-1">
-          <label className="text-sm text-gray-600 dark:text-gray-300">
-            Email
-          </label>
+          <label className="text-sm text-gray-600 dark:text-gray-300">Email</label>
           <input
             name="email"
             type="email"
@@ -86,9 +78,7 @@ function SigninPage() {
         </div>
 
         <div className="space-y-1">
-          <label className="text-sm text-gray-600 dark:text-gray-300">
-            Password
-          </label>
+          <label className="text-sm text-gray-600 dark:text-gray-300">Password</label>
           <input
             name="password"
             type="password"
@@ -99,11 +89,7 @@ function SigninPage() {
         </div>
 
         <div className="flex justify-end">
-          <Link
-            href="/signup"
-            className="text-sm text-blue-600 hover:underline"
-          >
-            
+          <Link href="/signup" className="text-sm text-blue-600 hover:underline">
             Signup
           </Link>
         </div>
