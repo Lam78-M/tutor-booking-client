@@ -44,7 +44,7 @@ const TutorAllPage = () => {
       </h1>
 
       {/* Filter section------- */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10 px-6 ">
         {/* Search impliment ------ */}
         <div>
           <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
