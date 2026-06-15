@@ -32,41 +32,46 @@ export default function AddTutor() {
   useEffect(() => {
     document.title = "Add Tutor | Tutor App";
   }, []);
+     
+    const onSubmit = async (e) => {
+  e.preventDefault();
+  
+  // 🌟 ১. ‘await’ করার আগেই ফর্মের রেফারেন্সটি একটি ভেরিয়েবলে সেভ করে রাখো
+  const form = e.currentTarget; 
+  
+  const formData = new FormData(form);
+  const tutorData = Object.fromEntries(formData.entries());
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    
-    const formData = new FormData(e.currentTarget);
-    const tutorData = Object.fromEntries(formData.entries());
+  const { data: tokenData } = await authClient.token();
 
-    const { data: tokenData } = await authClient.token();
-
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/add-tutor`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json", 
-            authorization: `Bearer ${tokenData?.token}`,
-          },
-          body: JSON.stringify(tutorData), 
-        }
-      );
-
-      const data = await res.json();
-
-      if (res.ok) {
-        toast.success("Successfully Added");
-        e.currentTarget.reset();
-      } else {
-        toast.error(data.message || "Failed to add tutor");
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/add-tutor`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", 
+          authorization: `Bearer ${tokenData?.token}`,
+        },
+        body: JSON.stringify(tutorData), 
       }
-    } catch (error) {
-      console.error(error);
-      toast.error("Server Error");
+    );
+
+    const data = await res.json();
+
+    if (res.ok) {
+      toast.success("Successfully Added");
+      // 🌟 ২. এখন `e.currentTarget` এর বদলে সরাসরি `form.reset()` ব্যবহার করো
+      form.reset(); 
+    } else {
+      toast.error(data.message || "Failed to add tutor");
     }
-  };
+  } catch (error) {
+    console.error(error);
+    toast.error("Server Error");
+  }
+};
+  
 
   return (
     <div className="p-5 max-w-3xl mx-auto shadow-xl mt-10 mb-10 border bg-white dark:bg-[#0f172a] transition-colors duration-300 px-4">
