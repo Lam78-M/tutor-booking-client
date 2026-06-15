@@ -5,7 +5,7 @@ MediQueue is a full-stack tutor booking web application where students can regis
 ---
 
 ## 🌐 Live Website
-👉 https://your-live-link-here.com
+👉 https://mediqueue-tutur-client.vercel.app
 
 ---
 
@@ -100,4 +100,6 @@ MediQueue is a full-stack tutor booking web application where students can regis
 
 ### Clone the repo
 ```bash
-git clone https://github.com/your-username/mediqueue-client.git
+client-side-repo: https://github.com/Lam78-M/tutor-booking-client
+
+server-side-repo: https://github.com/Lam78-M/tutor-booking-server
