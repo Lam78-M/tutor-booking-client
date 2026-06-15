@@ -15,7 +15,7 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { authClient } from "@/lib/auth-client";
 
-// ইনপুট ফিল্ডগুলোর কমন স্টাইল
+
 const inputStyle = `
   !rounded-none
   bg-white
@@ -104,7 +104,7 @@ export default function AddTutor() {
               <FieldError />
             </TextField>
 
-            {/* Tutor Photo URL (সেই আগের সিম্পল ফিল্ড) ---------- */}
+         
             <TextField name="photo" isRequired>
               <Label className="text-gray-700 dark:text-gray-200">
                 Tutor Photo URL
