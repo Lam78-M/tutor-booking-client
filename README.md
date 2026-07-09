@@ -1,3 +1,7 @@
+<p>
+  <img src="Screenshot 2026-07-09 191422.png" />
+</p>
+
 # 🎓 MediQueue – Tutor Booking System
 
 MediQueue is a full-stack tutor booking web application where students can register, log in, browse tutors, and book learning sessions easily. The system helps users manage tutoring schedules efficiently with automatic slot management and booking control.
